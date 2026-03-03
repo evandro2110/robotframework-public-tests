@@ -4,12 +4,15 @@ Documentation    Arquivo de contendo os passos que serão usados nos testes de l
 Library          SeleniumLibrary
 
 Resource         ../page_object/login.resource
+Resource         ../../../commons/web/commonsWeb.resource
+
 
 *** Variables ***
 ${USER}                  standard_user
 ${PASSWORD}              secret_sauce
 ${INCORRECT_PASSWORD}    test
 ${INVALID_USER}          invalid
+
 
 *** Keywords ***
 # --- DADO
@@ -24,12 +27,12 @@ Dado que estou na página de login Sauce Demo
 # --- E
 
 E informo o usuário
-    [Documentation]
+    [Documentation]    Insere o valor do argumento recebido e faz o input no campo de usuário
     [Arguments]    ${USER}
     Input Text     ${INPUT_USER}    ${USER}
 
 E informo a senha
-    [Documentation]
+    [Documentation]    Insere o valor do argumento recebido e faz o input no campo de senha
     [Arguments]    ${PWD}
     Input Password    ${INPUT_PASSWORD}    ${PWD}
 
@@ -37,7 +40,7 @@ E informo a senha
 
 Acessar Página Sauce Demo
     [Documentation]    Passos para acessar a página login
-    Open Browser    ${LOGIN_URL}    chrome
+    Open Browser    ${LOGIN_URL}    ${BROWSER}
     Maximize Browser Window
     ${RECEIVED_TITLE}    Get Title
     Should Be Equal    ${RECEIVED_TITLE}    ${TITLE_LOGIN}

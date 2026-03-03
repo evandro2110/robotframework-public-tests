@@ -10,7 +10,8 @@ Test Teardown    Close All Browsers
 
 # Hooks e Keywords Globais
 Resource    ../../../../resource/commons/web/commonsWeb.resource
-Resource    ../../../../resource/main.resource
+Resource    ../../../../resource/web/sauceDemo/steps/login.resource
+
 
 *** Test Cases ***
 CT01: Login inválido

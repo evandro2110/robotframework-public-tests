@@ -15,6 +15,9 @@ Este repositório é um projeto completo de automação utilizando **Robot Frame
 
 ## 🛠️ Configurações de auditoria estática estão presentes no arquivo:
 - `.robocop`
+Para garantir a manutenibilidade e o Clean Code, este projeto utiliza o Robocop como linter estático. Para validar o projeto, execute:
+- `robocop .`
+
 
 ## 🛠️ Como Executar
 

@@ -1,7 +1,15 @@
 *** Settings ***
 Documentation    Arquivo de contendo as variáveis comumente usadas nos testes web
 
-Library          SeleniumLibrary
+Library    Collections
+Library    OperatingSystem
+Library    SeleniumLibrary
+Library    RequestsLibrary
+
+
+*** Variables ***
+${BROWSER}      chrome
+
 
 *** Keywords ***
 # --- DADO
@@ -15,14 +23,13 @@ Quando clicar no botão
     Click Element        ${BUTTON}
 
 # --- ENTAO
+
 Então deverá apresentar a mensagem de erro
-    [Documentation]
+    [Documentation]    Valida a mensagem em comparação a variável recebida como argumento
     [Arguments]    ${ELEMENT}    ${MSG}
     Set Test Variable         ${MSG}
     Set Test Variable         ${ELEMENT}
     Element Text Should Be    ${ELEMENT}    ${MSG}
-    
 
 # --- E
-
 # --- STEPS

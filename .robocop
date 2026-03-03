@@ -1,7 +1,4 @@
-# --- Configurações de Estilo e Convenção ---
-
-# Define que o sinal de atribuição de variáveis deve ser sempre '='
---configure assignment-sign-type:assignment_sign_type:equal_sign
+<!-- # --- Configurações de Estilo e Convenção ---
 
 # --- Regras para Robocop Ignorar (Excludes) ---
 
@@ -17,9 +14,5 @@
 
 # --- Regras de Qualidade (Habilitadas) ---
 
-# Reporta se houver variáveis duplicadas ou keywords vazias
---include empty-library-alias
---include duplicated-modifier
-
-# Gera um relatório resumido ao final da execução
+# Gera um relatório resumido ao final da execução -->
 --reports rules_by_id,return_status
