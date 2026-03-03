@@ -1,0 +1,8 @@
+robotframework
+robotframework-faker
+robotframework-robocop
+robotframework-seleniumlibrary
+robotframework-requests
+robotframework-appiumlibrary
+robotframework-pabot
+webdriver-manager

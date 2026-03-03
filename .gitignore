@@ -1,0 +1,36 @@
+# --- Robot Framework ---
+# Ignora os resultados das execuções (reports, logs e outputs)
+output.xml
+log.html
+report.html
+selenium-screenshot-*.png
+browser-screenshots/
+pabot_results/
+
+# --- Python ---
+# Ignora ambientes virtuais e cache do Python
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# --- Mobile (Appium) ---
+# Ignora arquivos de logs do Appium e builds locais
+*.log
+appium.log
+
+# --- IDEs ---
+# Ignora configurações específicas de editores (VS Code, PyCharm)
+.vscode/
+.idea/
+
+# --- Sistema Operacional ---
+.DS_Store
+Thumbs.db
+
+# --- Dados Sensíveis / Configurações Locais ---
+.env
+data/local_config.yml
