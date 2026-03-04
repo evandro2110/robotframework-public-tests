@@ -4,11 +4,12 @@ Documentation    Arquivo de contendo os passos que serão usados nos testes de l
 Library          SeleniumLibrary
 
 Resource         ../page_object/login.resource
+Resource         ../page_object/home.resource
 Resource         ../../../commons/web/commonsWeb.resource
 
 
 *** Variables ***
-${USER}                  standard_user
+${VALID_USER}            standard_user
 ${PASSWORD}              secret_sauce
 ${INCORRECT_PASSWORD}    test
 ${INVALID_USER}          invalid
@@ -23,6 +24,12 @@ Dado que estou na página de login Sauce Demo
 # --- QUANDO
 
 # --- ENTAO
+
+Entao a página principal deverá ser apresentada
+    [Documentation]    Valida a apresentação da página após login com sucesso
+    Wait Until Element Is Visible    ${BTN_CART}
+    Wait Until Element Is Visible    ${BTN_MENU}
+    Wait Until Element Is Visible    ${TXT_FINAL_PAGE}
 
 # --- E
 
