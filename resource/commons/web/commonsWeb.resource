@@ -1,10 +1,8 @@
 *** Settings ***
 Documentation    Arquivo de contendo as variáveis comumente usadas nos testes web
 
-Library    Collections
 Library    OperatingSystem
 Library    SeleniumLibrary
-Library    RequestsLibrary
 
 
 *** Variables ***

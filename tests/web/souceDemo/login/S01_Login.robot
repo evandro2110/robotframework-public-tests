@@ -2,8 +2,6 @@
 Documentation    Arquivo que contém os testes da tela de login Sauce Demo
 
 # Bibliotecas
-Library    Collections
-Library    OperatingSystem
 Library    SeleniumLibrary
 
 Test Teardown    Close All Browsers
@@ -16,7 +14,7 @@ Resource    ../../../../resource/web/sauceDemo/steps/login.resource
 *** Test Cases ***
 CT01: Login inválido
     [Documentation]    Validação do comportamento da página ao informar um usuário inexistente
-    [Tags]    critical
+    [Tags]    negative
     Dado que estou na página de login Sauce Demo
     E informo o usuário    ${INVALID_USER}
     E informo a senha      ${PASSWORD}

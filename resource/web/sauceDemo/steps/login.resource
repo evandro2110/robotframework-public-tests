@@ -27,9 +27,7 @@ Dado que estou na página de login Sauce Demo
 
 Entao a página principal deverá ser apresentada
     [Documentation]    Valida a apresentação da página após login com sucesso
-    Wait Until Element Is Visible    ${BTN_CART}
-    Wait Until Element Is Visible    ${BTN_MENU}
-    Wait Until Element Is Visible    ${TXT_FINAL_PAGE}
+    Validar itens da página após login
 
 # --- E
 
@@ -51,3 +49,9 @@ Acessar Página Sauce Demo
     Maximize Browser Window
     ${RECEIVED_TITLE}    Get Title
     Should Be Equal    ${RECEIVED_TITLE}    ${TITLE_LOGIN}
+
+Validar itens da página após login
+    [Documentation]    Valida os itens da página após login com sucesso
+    Wait Until Element Is Visible    ${BTN_CART}
+    Wait Until Element Is Visible    ${BTN_MENU}
+    Wait Until Element Is Visible    ${TXT_FINAL_PAGE}
