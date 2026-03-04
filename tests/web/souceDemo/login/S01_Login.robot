@@ -22,3 +22,12 @@ CT01: Login inválido
     E informo a senha      ${PASSWORD}
     Quando clicar no botão    ${BTN_LOGIN}
     Então deverá apresentar a mensagem de erro    ${ERROR_CONTAINER}    ${MSG_ERRO_LOGIN}
+
+CT02: Login válido - Sucesso
+    [Documentation]    Validação do comportamento da página ao informar usuário e senha corretos
+    [Tags]    critical
+    Dado que estou na página de login Sauce Demo
+    E informo o usuário    ${VALID_USER}
+    E informo a senha      ${PASSWORD}
+    Quando clicar no botão    ${BTN_LOGIN}
+    Entao a página principal deverá ser apresentada
