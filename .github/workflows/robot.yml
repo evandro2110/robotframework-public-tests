@@ -2,7 +2,9 @@ name: Robot Framework CI
 
 on:
   pull_request:
-    branches: [ master ] # Vai disparar quando houver PR para esta branch
+    branches: [ master ]
+  push:
+    branches: [ main ]
 
 jobs:
   test:
