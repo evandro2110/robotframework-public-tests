@@ -26,7 +26,6 @@ Então a tela de carrinho de compras deverá ser apresentada sem itens
 Então o produto deverá ser apresentado no carrinho de compras
     [Documentation]    Valida se o produto adicionado ao carrinho é o mesmo apresentado na página de carrinho de compras
     Wait Until Page Contains  ${PRODUCT_NAME_SORT}
-    Capture Page Screenshot
 
 # --- E
 

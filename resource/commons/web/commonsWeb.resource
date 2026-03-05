@@ -59,7 +59,6 @@ Retornar aplicação ao estado original
     Click Element                    ${BTN_MENU}
     Wait Until Element Is Visible    ${RESTORE_APP_STATE}
     Click Element                    ${RESTORE_APP_STATE}
-    Capture Page Screenshot
     Close Browser
 
 Finalizar Teste
