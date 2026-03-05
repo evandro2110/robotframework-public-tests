@@ -4,6 +4,8 @@ Documentation    Arquivo de contendo as variáveis comumente usadas nos testes w
 Library    OperatingSystem
 Library    SeleniumLibrary
 
+Resource    ../../web/sauceDemo/page_object/home.resource
+
 
 *** Variables ***
 ${BROWSER}      chrome
@@ -31,3 +33,12 @@ Então deverá apresentar a mensagem de erro
 
 # --- E
 # --- STEPS
+
+Retornar aplicação ao estado original
+    [Documentation]    Clica no menu e depois na opção de restaurar estado original da aplicação
+    Wait Until Element Is Visible    ${BTN_MENU}
+    Click Element                    ${BTN_MENU}
+    Wait Until Element Is Visible    ${RESTORE_APP_STATE}
+    Click Element                    ${RESTORE_APP_STATE}
+    Capture Page Screenshot
+    Close Browser
