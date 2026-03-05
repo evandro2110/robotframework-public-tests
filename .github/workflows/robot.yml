@@ -27,7 +27,7 @@ jobs:
 
       - name: Rodar auditoria estática (Robocop)
         run: |
-          robocop tests
+          robocop
 
       - name: Rodar Testes Web (Headless Mode)
         run: |
