@@ -42,3 +42,8 @@ Retornar aplicação ao estado original
     Click Element                    ${RESTORE_APP_STATE}
     Capture Page Screenshot
     Close Browser
+
+Finalizar Teste
+    [Documentation]    Finaliza o teste, caso haja falha, captura a tela
+    Run Keyword If Test Failed    Capture Page Screenshot    failure-${TEST_NAME}.png
+    Close Browser

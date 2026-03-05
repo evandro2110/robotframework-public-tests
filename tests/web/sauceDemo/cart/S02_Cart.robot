@@ -4,7 +4,7 @@ Documentation    Arquivo que contém os testes da tela de Carrinho de compras Sa
 # Bibliotecas
 Library    SeleniumLibrary
 
-Test Teardown    Close Browser
+Test Teardown    Finalizar Teste
 
 # Hooks e Keywords Globais
 Resource    ../../../../resource/commons/web/commonsWeb.resource

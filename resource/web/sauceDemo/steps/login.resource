@@ -46,7 +46,12 @@ E informo a senha
 Acessar Página Sauce Demo
     [Documentation]    Passos para acessar a página login
     ${OPTIONS}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
-    # Adiciono argumentos para não atrapalhar os testes
+    
+    IF    "headless" in "${BROWSER}"
+        Call Method    ${OPTIONS}    add_argument    --headless
+        Call Method    ${OPTIONS}    add_argument    --no-sandbox
+        Call Method    ${OPTIONS}    add_argument    --disable-dev-shm-usage
+    END
     Call Method    ${OPTIONS}    add_argument    --disable-save-password-bubble
     Call Method    ${OPTIONS}    add_argument    --disable-infobars
     Call Method    ${OPTIONS}    add_argument    --disable-notifications
