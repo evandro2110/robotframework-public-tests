@@ -5,19 +5,38 @@ Library    OperatingSystem
 Library    SeleniumLibrary
 
 Resource    ../../web/sauceDemo/page_object/home.resource
+Resource    ../../web/sauceDemo/page_object/login.resource
 
 
 *** Variables ***
-${BROWSER}      chrome
+${BROWSER}                 chrome
+${HEADLESS}                false
 
 
 *** Keywords ***
+Abrir Navegador
+    [Documentation]    Abre o navegador com as opções apropriadas (headless no CI, normal no desenvolvimento)
+    ${OPTIONS}=    Evaluate    selenium.webdriver.ChromeOptions()    selenium.webdriver
+
+    IF    '${HEADLESS}' == 'true'
+        Evaluate    ${OPTIONS}.add_argument('--headless=new')
+        Evaluate    ${OPTIONS}.add_argument('--no-sandbox')
+        Evaluate    ${OPTIONS}.add_argument('--disable-dev-shm-usage')
+        Evaluate    ${OPTIONS}.add_argument('--disable-gpu')
+    ELSE
+        Evaluate    ${OPTIONS}.add_argument('--disable-save-password-bubble')
+        Evaluate    ${OPTIONS}.add_argument('--disable-infobars')
+        Evaluate    ${OPTIONS}.add_argument('--disable-notifications')
+    END
+
+    Open Browser    ${LOGIN_URL}    ${BROWSER}    options=${OPTIONS}
+
 # --- DADO
 
 # --- QUANDO
 
 Quando clicar no botão
-    [Documentation]    Aqui pode posso usar o click element ou click button
+    [Documentation]    Aqui posso usar o click element ou click button
     [Arguments]    ${BUTTON}
     Set Test Variable    ${BUTTON}
     Click Element        ${BUTTON}
