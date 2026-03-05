@@ -20,11 +20,14 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Instalar Chrome e ChromeDriver
+      - name: Instalar Google Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Instalar ChromeDriver
         run: |
-          sudo apt-get update
-          sudo apt-get install -y chromium-browser
-          wget -q -O /tmp/chromedriver.zip https://edgedl.me/chromium-browser/snapshots/Linux_x64/LATEST_RELEASE
+          CHROME_VERSION=$(google-chrome --version | grep -oP '\\d+\\.\\d+\\.\\d+')
+          DRIVER_VERSION=$(wget -qO- "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION%%.*}")
+          wget -O /tmp/chromedriver.zip "https://chromedriver.storage.googleapis.com/${DRIVER_VERSION}/chromedriver_linux64.zip"
           unzip /tmp/chromedriver.zip -d /usr/local/bin/
           chmod +x /usr/local/bin/chromedriver
 
