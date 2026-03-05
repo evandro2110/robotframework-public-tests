@@ -46,7 +46,7 @@ E informo a senha
 Acessar Página Sauce Demo
     [Documentation]    Passos para acessar a página login
     ${OPTIONS}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
-    
+
     IF    "headless" in "${BROWSER}"
         Call Method    ${OPTIONS}    add_argument    --headless
         Call Method    ${OPTIONS}    add_argument    --no-sandbox
