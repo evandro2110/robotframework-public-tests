@@ -28,3 +28,6 @@ Para garantir a manutenibilidade e o Clean Code, este projeto utiliza o Robocop 
    - **API:** `robot -d ./logs -i api tests/`
    - **Web:** `robot -d ./logs -i web tests/`
    - **Mobile:** `robot -d ./logs -i mobile tests/`
+
+3. Resultado final da última execução
+![Robot Framework CI](https://github.com/evandro2110/robotframework-public-tests/actions/workflows/robot.yml/badge.svg)
