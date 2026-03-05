@@ -1,18 +1,13 @@
-<!-- # --- Configurações de Estilo e Convenção ---
+# --- Configurações de Estilo e Convenção ---
 
-# --- Regras para Robocop Ignorar (Excludes) ---
-
-# Ignora o erro W0302 (Keyword name should be in title case)
-# Escolhemos ignorar para permitir flexibilidade em nomes de keywords técnicas
+# Ignora regra de nome nas keywords
 --exclude W0302
 
-# Ignora linhas muito longas (útil para locators complexos de Mobile/Web)
---exclude line-too-long
+# Ignora a quantidade de chamadas numa kw
+--exclude W0503
 
-# Ignora excesso de documentação obrigatória em cada keyword (evita poluição visual)
---exclude missing-doc-keyword
+# Ignora waring quando a palavra 'todo' ou 'todos' é mencionada em pt-br e robocop interpreta como to-do
+--exclude W0701
 
-# --- Regras de Qualidade (Habilitadas) ---
-
-# Gera um relatório resumido ao final da execução -->
---reports rules_by_id,return_status
+# Ao final da execução da análise estática reporta as regras violadas por id
+--reports rules_by_id

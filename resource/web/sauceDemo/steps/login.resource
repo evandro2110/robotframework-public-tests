@@ -45,9 +45,30 @@ E informo a senha
 
 Acessar Página Sauce Demo
     [Documentation]    Passos para acessar a página login
-    Open Browser    ${LOGIN_URL}    ${BROWSER}
+    ${OPTIONS}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
+    
+    IF    "headless" in "${BROWSER}"
+        Call Method    ${OPTIONS}    add_argument    --headless
+        Call Method    ${OPTIONS}    add_argument    --no-sandbox
+        Call Method    ${OPTIONS}    add_argument    --disable-dev-shm-usage
+    END
+    Call Method    ${OPTIONS}    add_argument    --disable-save-password-bubble
+    Call Method    ${OPTIONS}    add_argument    --disable-infobars
+    Call Method    ${OPTIONS}    add_argument    --disable-notifications
+    Call Method    ${OPTIONS}    add_argument    --incognito
+
+    ${PREFERENCIAS_CHROME}=    Create Dictionary
+    ...    credentials_enable_service=${False}
+    ...    password_manager_enabled=${False}
+    ...    autofill.profile_enabled=${False}
+    ...    autofill.address_enabled=${False}
+
+    Call Method    ${OPTIONS}    add_experimental_option    prefs    ${PREFERENCIAS_CHROME}
+    Call Method    ${OPTIONS}    add_experimental_option    excludeSwitches    ${{['enable-automation']}}
+
+    Open Browser   ${LOGIN_URL}    ${BROWSER}    options=${OPTIONS}
     Maximize Browser Window
-    ${RECEIVED_TITLE}    Get Title
+    ${RECEIVED_TITLE}=    Get Title
     Should Be Equal    ${RECEIVED_TITLE}    ${TITLE_LOGIN}
 
 Validar itens da página após login
