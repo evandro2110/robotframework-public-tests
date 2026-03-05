@@ -27,12 +27,12 @@ jobs:
 
       - name: Rodar auditoria estática (Robocop)
         run: |
-          robocop . # A pipeline falha se houver erros graves de padrão
+          robocop tests
 
       - name: Rodar Testes Web (Headless Mode)
         run: |
           # Rodando browser no modo headless
-          robot -d ./results -v BROWSER:headlesschrome tests/web/sauceDemo/
+          robot -d ./results -v BROWSER:headlesschrome tests/
 
       - name: Upload dos Resultados e Prints
         if: always() # Garante o upload mesmo se o teste falhar
