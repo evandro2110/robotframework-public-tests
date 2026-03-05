@@ -32,7 +32,7 @@ jobs:
 
       - name: Rodar auditoria estática (Robocop)
         run: |
-          robocop
+          robocop check tests
 
       - name: Rodar Testes Web (Headless Mode)
         run: |
