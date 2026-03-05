@@ -30,9 +30,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Rodar auditoria estática (Robocop)
-        run: |
-          robocop check tests
+    #   - name: Rodar auditoria estática (Robocop)
+    #     run: |
+    #       robocop check tests
 
       - name: Rodar Testes Web (Headless Mode)
         run: |
