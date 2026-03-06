@@ -3,6 +3,7 @@ Documentation    Arquivo de contendo as variáveis comumente usadas nos testes w
 
 Library    OperatingSystem
 Library    SeleniumLibrary
+Library    FakerLibrary
 
 Resource    ../../web/sauceDemo/page_object/home.resource
 Resource    ../../web/sauceDemo/page_object/login.resource
@@ -41,6 +42,14 @@ Quando clicar no botão
     Set Test Variable    ${BUTTON}
     Click Element        ${BUTTON}
 
+Quando preencher o campo
+    [Documentation]    Preenche o campo recebido com argumento recebido
+    [Arguments]    ${CAMPO}    ${VALOR}
+    Set Test Variable    ${CAMPO}
+    Set Test Variable    ${VALOR}
+    Wait Until Element Is Visible    ${CAMPO}
+    Input Text           ${CAMPO}    ${VALOR}
+
 # --- ENTAO
 
 Então deverá apresentar a mensagem de erro
@@ -51,6 +60,13 @@ Então deverá apresentar a mensagem de erro
     Element Text Should Be    ${ELEMENT}    ${MSG}
 
 # --- E
+
+E clicar no botão
+    [Documentation]    Ação de clique no botão
+    [Arguments]    ${BUTTON}
+    Set Test Variable    ${BUTTON}
+    Click Element        ${BUTTON}
+
 # --- STEPS
 
 Retornar aplicação ao estado original
@@ -65,3 +81,12 @@ Finalizar Teste
     [Documentation]    Finaliza o teste, caso haja falha, captura a tela
     Run Keyword If Test Failed    Capture Page Screenshot    failure-${TEST_NAME}.png
     Close Browser
+
+Gerar First Name, Last Name e Zip Code
+    [Documentation]    Gera dados aleatórios para os campos de First Name, Last Name e Zip Code
+    ${FAKE_FIRST_NAME}=    FakerLibrary.First Name
+    Set Test Variable    ${FAKE_FIRST_NAME}
+    ${FAKE_LAST_NAME}=     FakerLibrary.Last Name
+    Set Test Variable    ${FAKE_LAST_NAME}
+    ${FAKE_ZIP_CODE}=      FakerLibrary.Zipcode
+    Set Test Variable    ${FAKE_ZIP_CODE}

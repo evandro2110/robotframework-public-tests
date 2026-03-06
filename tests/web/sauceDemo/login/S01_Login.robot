@@ -28,4 +28,4 @@ CT02: Login válido - Sucesso
     E informo o usuário      ${VALID_USER}
     E informo a senha        ${PASSWORD}
     Quando clicar no botão   ${BTN_LOGIN}
-    Entao a página principal deverá ser apresentada
+    Então a página principal deverá ser apresentada

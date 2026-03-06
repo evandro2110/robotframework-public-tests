@@ -25,7 +25,7 @@ Dado que estou na página de login Sauce Demo
 
 # --- ENTAO
 
-Entao a página principal deverá ser apresentada
+Então a página principal deverá ser apresentada
     [Documentation]    Valida a apresentação da página após login com sucesso
     Validar itens da página após login
 
