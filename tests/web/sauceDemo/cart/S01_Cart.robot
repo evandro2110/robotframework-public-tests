@@ -49,8 +49,39 @@ CT05: Tentar finalizar compra preenchendo apenas o First Name
     [Setup]    Gerar First Name, Last Name e Zip Code
     [Teardown]    Retornar aplicação ao estado original
     Dado que estou na página Sauce Demo
-    E possuo ao menos um produto no carrinho de compras
-    E clicar no botão    ${BTN_CHECKOUT}
+    E tenho produto na tela na tela de checkout
     Quando preencher o campo    ${INPUT_FIRST_NAME}    ${FAKE_FIRST_NAME}
     E clicar no botão         ${BTN_CONTINUE}
     Então os campos Last Name e Zip Code apresentarão crítica
+
+CT06: Tentar finalizar sem preencher o Zip Code
+    [Documentation]    Validar campos obrigatórios antes de finalizar a compra
+    [Setup]    Gerar First Name, Last Name e Zip Code
+    [Teardown]    Retornar aplicação ao estado original
+    Dado que estou na página Sauce Demo
+    E tenho produto na tela na tela de checkout
+    Quando preencher o campo    ${INPUT_FIRST_NAME}    ${FAKE_FIRST_NAME}
+    E preencher o campo    ${INPUT_LAST_NAME}    ${FAKE_LAST_NAME}
+    E clicar no botão      ${BTN_CONTINUE}
+    Então o campo Zip Code apresentará crítica
+
+CT07: Validar tela antes da finalização de compra
+    [Documentation]    Validar tela de finalização de compra
+    [Setup]    Gerar First Name, Last Name e Zip Code
+    [Teardown]    Retornar aplicação ao estado original
+    Dado que estou na página Sauce Demo
+    E tenho produto na tela na tela de checkout
+    Quando preencher os campos obrigatórios do checkout
+    E clicar no botão    ${BTN_CONTINUE}
+    Então deverá ser apresentada na tela os itens antes da finalização da compra
+
+CT08: Fiunalizando compra - Sucesso
+    [Documentation]    Validar finalização da compra
+    [Setup]    Gerar First Name, Last Name e Zip Code
+    [Teardown]    Run Keyword If Test Failed    Retornar aplicação ao estado original
+    Dado que estou na página Sauce Demo
+    E tenho produto na tela na tela de checkout
+    Quando preencher os campos obrigatórios do checkout
+    E clicar no botão    ${BTN_CONTINUE}
+    Então deverá ser apresentada na tela os itens antes da finalização da compra
+    E ao clicar em finalizar o pedido será concluído
