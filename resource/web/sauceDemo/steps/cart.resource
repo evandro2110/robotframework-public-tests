@@ -16,6 +16,7 @@ Resource         ../steps/login.resource
 ${FAKE_FIRST_NAME}    ${EMPTY}
 ${FAKE_LAST_NAME}     ${EMPTY}
 ${FAKE_ZIP_CODE}      ${EMPTY}
+${ID_BTN_FORMATED}    ${EMPTY}
 
 
 *** Keywords ***
@@ -39,6 +40,7 @@ Quando preencher os campos obrigatórios do checkout
 Então a tela de carrinho de compras deverá ser apresentada sem itens
     [Documentation]    Chama step que valida elementos da página carrinho de compras
     Validar carrinho de compras sem itens
+    Run Keyword And Warn On Failure    Retornar aplicação ao estado original
 
 Então o produto deverá ser apresentado no carrinho de compras
     [Documentation]    Valida se o produto adicionado ao carrinho é o mesmo apresentado na página de carrinho de compras
@@ -92,6 +94,10 @@ E tenho produto na tela na tela de checkout
 E ao clicar em finalizar o pedido será concluído
     [Documentation]    Chama o passo para validação da finalização do pedido
     Validar finalização do pedido
+
+E o botão de remoção do produto está visível
+    [Documentation]    Chamo o passo para montar o id do botão de remoção e valida se o elemento está visível
+    Montar elemento do botão remover conforme produto
 
 # --- STEPS
 
@@ -179,3 +185,9 @@ Validar finalização do pedido
     Element Should Contain           ${ELEMENT_TEXT}    ${TXT_FINISH_ORDER}
     Page Should Contain              ${TXT_CHECKOUT_COMPLETE}
     Close Browser
+
+Montar elemento do botão remover conforme produto
+    [Documentation]    Formata o nome do produto para montar o id do botão de remoção
+    ${PRODUCT_NAME_LOWER}=    Convert To Lower Case    ${PRODUCT_NAME_SORT}
+    ${ID_BTN_FORMATED}=    Replace String    ${PRODUCT_NAME_LOWER}    ${SPACE}    -
+    Set Test Variable    ${ID_BTN_FORMATED}
