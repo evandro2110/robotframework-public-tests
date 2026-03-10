@@ -45,10 +45,7 @@ Quando clicar no botão
 Quando preencher o campo
     [Documentation]    Preenche o campo recebido com argumento recebido
     [Arguments]    ${CAMPO}    ${VALOR}
-    Set Test Variable    ${CAMPO}
-    Set Test Variable    ${VALOR}
-    Wait Until Element Is Visible    ${CAMPO}
-    Input Text           ${CAMPO}    ${VALOR}
+    Preencher campo e valor    ${CAMPO}    ${VALOR}
 
 # --- ENTAO
 
@@ -67,7 +64,20 @@ E clicar no botão
     Set Test Variable    ${BUTTON}
     Click Element        ${BUTTON}
 
+E preencher o campo
+    [Documentation]    Preenche o campo recebido com argumento recebido
+    [Arguments]    ${CAMPO}    ${VALOR}
+    Preencher campo e valor    ${CAMPO}    ${VALOR}
+
 # --- STEPS
+
+Preencher campo e valor
+    [Documentation]    Preenche o campo recebido com argumento recebido
+    [Arguments]    ${CAMPO}    ${VALOR}
+    Set Test Variable    ${CAMPO}
+    Set Test Variable    ${VALOR}
+    Wait Until Element Is Visible    ${CAMPO}
+    Input Text           ${CAMPO}    ${VALOR}
 
 Retornar aplicação ao estado original
     [Documentation]    Clica no menu e depois na opção de restaurar estado original da aplicação
