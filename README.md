@@ -1,6 +1,6 @@
-# 🤖 robotframework-public-tests
+# 🤖 public-tests
 
-Este repositório é um projeto completo de automação utilizando **Robot Framework**, cobrindo as três frentes: **Web, API e Mobile**.
+Este repositório é um projeto completo de automação inicialmente com **Robot Framework**, cobrindo as três frentes: **Web, API e Mobile**. Para planos futuros usaremos **Cypress**
 
 ## 🚀 Tecnologias e Bibliotecas
 - **Robot Framework**: Core do projeto.
