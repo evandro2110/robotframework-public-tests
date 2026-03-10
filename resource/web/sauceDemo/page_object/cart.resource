@@ -17,6 +17,7 @@ ${BTN_CONTINUE}                id=continue
 ${BTN_CANCEL}                  id=cancel
 ${BTN_FINISH}                  id=finish
 ${BTN_BACK_TO_PRODUCTS}        id=back-to-products
+${BTN_REMOVE}                  id=remove-
 
 # --- ITEM
 ${INVENTORY_ITEM_NAME}         css:.inventory_item_name

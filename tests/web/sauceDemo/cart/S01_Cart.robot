@@ -14,12 +14,14 @@ Test Teardown   Finalizar Teste
 *** Test Cases ***
 CT01: Validando carrinho de compras sem itens
     [Documentation]    Validação do comportamento da página ao acessar o carrinho de compras sem itens
+    [Tags]    positive
     Dado que estou na página Sauce Demo
     Quando clicar no botão    ${BTN_CART}
     Então a tela de carrinho de compras deverá ser apresentada sem itens
 
 CT02: Validando adição do produto aleatório ao carrinho de compras
     [Documentation]    Validação da página ao adicionar um produto aleatório no carrinho
+    [Tags]    critical
     [Teardown]    Retornar aplicação ao estado original
     Dado que estou na página Sauce Demo
     E adiciono um produto aleatório no carrinho de compras
@@ -28,6 +30,7 @@ CT02: Validando adição do produto aleatório ao carrinho de compras
 
 CT03: Retornando para a página de produtos sem finalizar a compra
     [Documentation]    Retornar a página de produtos após visualizar produtos no carrinho
+    [Tags]    positive
     [Teardown]    Retornar aplicação ao estado original
     Dado que estou na página Sauce Demo
     E possuo ao menos um produto no carrinho de compras
@@ -37,6 +40,7 @@ CT03: Retornando para a página de produtos sem finalizar a compra
 
 CT04: Tentar finalizar compra sem preencher os campos obrigatórios
     [Documentation]    Validar campos obrigatórios antes de finalizar a compra
+    [Tags]    negative
     [Teardown]    Retornar aplicação ao estado original
     Dado que estou na página Sauce Demo
     E possuo ao menos um produto no carrinho de compras
@@ -46,6 +50,7 @@ CT04: Tentar finalizar compra sem preencher os campos obrigatórios
 
 CT05: Tentar finalizar compra preenchendo apenas o First Name
     [Documentation]    Validar campos obrigatórios antes de finalizar a compra
+    [Tags]    negative
     [Setup]    Gerar First Name, Last Name e Zip Code
     [Teardown]    Retornar aplicação ao estado original
     Dado que estou na página Sauce Demo
@@ -56,6 +61,7 @@ CT05: Tentar finalizar compra preenchendo apenas o First Name
 
 CT06: Tentar finalizar sem preencher o Zip Code
     [Documentation]    Validar campos obrigatórios antes de finalizar a compra
+    [Tags]    critical
     [Setup]    Gerar First Name, Last Name e Zip Code
     [Teardown]    Retornar aplicação ao estado original
     Dado que estou na página Sauce Demo
@@ -67,6 +73,7 @@ CT06: Tentar finalizar sem preencher o Zip Code
 
 CT07: Validar tela antes da finalização de compra
     [Documentation]    Validar tela de finalização de compra
+    [Tags]    critical
     [Setup]    Gerar First Name, Last Name e Zip Code
     [Teardown]    Retornar aplicação ao estado original
     Dado que estou na página Sauce Demo
@@ -75,8 +82,9 @@ CT07: Validar tela antes da finalização de compra
     E clicar no botão    ${BTN_CONTINUE}
     Então deverá ser apresentada na tela os itens antes da finalização da compra
 
-CT08: Fiunalizando compra - Sucesso
+CT08: Finalizando compra - Sucesso
     [Documentation]    Validar finalização da compra
+    [Tags]    critical    positive
     [Setup]    Gerar First Name, Last Name e Zip Code
     [Teardown]    Run Keyword If Test Failed    Retornar aplicação ao estado original
     Dado que estou na página Sauce Demo
@@ -85,3 +93,12 @@ CT08: Fiunalizando compra - Sucesso
     E clicar no botão    ${BTN_CONTINUE}
     Então deverá ser apresentada na tela os itens antes da finalização da compra
     E ao clicar em finalizar o pedido será concluído
+
+CT09: Removendo o produto do carrinho de compras
+    [Documentation]    A partir da tela de carrinho de compras, remover o produto
+    [Tags]    critical
+    Dado que estou na página Sauce Demo
+    E possuo ao menos um produto no carrinho de compras
+    E o botão de remoção do produto está visível
+    Quando clicar no botão    ${BTN_REMOVE}${ID_BTN_FORMATED}
+    Então a tela de carrinho de compras deverá ser apresentada sem itens
