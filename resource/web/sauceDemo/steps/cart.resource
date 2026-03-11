@@ -81,7 +81,6 @@ E a quantidade de itens no carrinho continuará ser apresentada
     Wait Until Element Is Visible    ${BTN_CART_BADGE}
     ${QTD_PRODUCTS}=    Get Text     ${BTN_CART_BADGE}
     Should Not Be Empty              ${QTD_PRODUCTS}
-    Capture Page Screenshot
 
 E tenho produto na tela na tela de checkout
     [Documentation]    Realiza o fluxo para ter um produto na tela de checkout

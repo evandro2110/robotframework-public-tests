@@ -2,7 +2,7 @@
 Documentation    Arquivo que contém os testes da tela de login Sauce Demo
 
 # Bibliotecas
-Library    SeleniumLibrary
+Library          SeleniumLibrary
 
 Test Teardown    Finalizar Teste
 
