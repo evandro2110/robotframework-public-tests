@@ -12,7 +12,7 @@ ${LOGIN_URL}          https://www.saucedemo.com/
 ${INPUT_USER}         id:user-name
 ${INPUT_PASSWORD}     id:password
 
-# --- BOTOES
+# --- BUTTON
 ${BTN_LOGIN}          id:login-button
 
 # --- WARN/ERRORS
