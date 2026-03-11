@@ -1,8 +1,8 @@
-robotframework
-robotframework-faker
+robotframework==5.0.1
+robotframework-faker==5.0.0
 robotframework-robocop==5.0.4
-robotframework-seleniumlibrary
-robotframework-requests
-robotframework-appiumlibrary
-robotframework-pabot
-webdriver-manager
+robotframework-seleniumlibrary==6.8.0
+robotframework-requests==0.9.3
+robotframework-appiumlibrary==3.2.1
+robotframework-pabot==5.2.2
+webdriver-manager==4.0.2
