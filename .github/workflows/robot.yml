@@ -40,14 +40,11 @@ jobs:
 
       - name: Rodar Testes de API (ServeRest)
         run: |
-          robot -d ./results/api tests/api
+          robot -d ./results/api -l log_api.html -r report_api.html tests/api
 
       - name: Upload dos Resultados e Prints
         if: always() # Garante o upload mesmo se o teste falhar
         uses: actions/upload-artifact@v4
         with:
           name: evidencias-do-teste
-          path: |
-            ./results/log.html
-            ./results/report.html
-            ./results/*.png
+          path: ./results/
