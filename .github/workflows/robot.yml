@@ -36,7 +36,7 @@ jobs:
       - name: Rodar Testes Web (Headless Mode)
         run: |
           # Rodando browser no modo headless
-          robot -d ./results -v BROWSER:headlesschrome -l log_web.html -r report_web.html tests/web
+          robot -d ./results/web -v BROWSER:headlesschrome -l log_web.html -r report_web.html tests/web
 
       - name: Rodar Testes de API (ServeRest)
         run: |
