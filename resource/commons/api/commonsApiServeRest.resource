@@ -1,0 +1,71 @@
+*** Settings ***
+Documentation    Arquivo de contendo as variáveis comumente usadas nos de API ServeRest
+
+Library    Collections
+Library    RequestsLibrary
+Library    FakerLibrary    locale=pt_br
+
+
+*** Variables ***
+${ALIAS_API_SERVEREST}     api_serveRest
+${BASE_URL_SERVEREST}      https://serverest.dev
+${URL_LOGIN}               login
+${URL_USUARIOS}            usuarios
+${CAMPO_NOME}              nome
+${CAMPO_EMAIL}             email
+${CAMPO_PWD}               password
+${CAMPO_ADM}               administrador
+${STATUS_RETORNADO}        ${EMPTY}
+${MSG_LOGIN_SUCESS}        Login realizado com sucesso
+
+
+*** Keywords ***
+# --- DADO
+Dado que possuo uma sessão na API ServeRest
+    [Documentation]   Cria uma sessão para a API ServeRest
+    Iniciar sessão API ServeRest
+
+# --- QUANDO
+
+# --- ENTAO
+
+Então o status code será
+    [Documentation]  Valida que o status code retornado pela API é o mesmo esperado
+    [Arguments]    ${STATUS_CODE}
+    Should Be Equal As Integers    ${STATUS_RETORNADO}    ${STATUS_CODE}
+
+# --- E
+# --- STEPS
+
+Iniciar sessão API ServeRest
+    [Documentation]  Cria uma sessão para a API ServeRest com os headers apropriados
+    ${HEADERS}    Create Dictionary
+    ...    Content-type=application/json
+    Create Session    alias=${ALIAS_API_SERVEREST}    url=${BASE_URL_SERVEREST}    headers=${HEADERS}    verify=True
+
+Criar dados para novo usuário
+    [Documentation]  Gera dados aleatórios para criação de um novo usuário e armazena em variável de suíte
+    ${RANDOM_FIRST_NAME}    FakerLibrary.First Name
+    ${RANDOM_LAST_NAME}     FakerLibrary.Last Name
+    ${RANDOM_PWD}           FakerLibrary.Password
+    ${RANDOM_EMAIL}         FakerLibrary.Email
+    ${DATA_USER}            Create Dictionary
+    ...    name=${RANDOM_FIRST_NAME} ${RANDOM_LAST_NAME}
+    ...    email=${RANDOM_EMAIL}
+    ...    password=${RANDOM_PWD}
+    Set Suite Variable    ${DATA_USER}
+
+Armazenar token
+    [Documentation]   Armazena o token de autenticação retornado pela API
+    ${BODY}      Create Dictionary   email=${DATA_USER.email}   password=${DATA_USER.password}
+    ${RESPONSE}  POST On Session     alias=${ALIAS_API_SERVEREST}    url=${URL_LOGIN}    json=${BODY}
+    Log   Resposta Retornada: ${\n}${RESPONSE.text}
+    Dictionary Should Contain Item    ${RESPONSE.json()}    message    ${MSG_LOGIN_SUCESS}
+    ${TOKEN}     Get From Dictionary    ${RESPONSE.json()}    authorization
+    Set Suite Variable    ${TOKEN}
+
+Validar mensagem de erro no campo
+    [Documentation]  Valida que a resposta da API contém a mensagem de erro esperada
+    [Arguments]    ${CAMPO}    ${MENSAGEM_ESPERADA}
+    ${JSON}    Set Variable    ${RESPONSE.json()}
+    Dictionary Should Contain Item    ${JSON}    ${CAMPO}    ${MENSAGEM_ESPERADA}
