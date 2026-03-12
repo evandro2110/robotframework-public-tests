@@ -6,6 +6,8 @@ report.html
 selenium-screenshot-*.png
 browser-screenshots/
 pabot_results/
+results/
+listener_output*
 
 # --- Python ---
 # Ignora ambientes virtuais e cache do Python

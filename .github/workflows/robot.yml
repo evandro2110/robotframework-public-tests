@@ -36,14 +36,15 @@ jobs:
       - name: Rodar Testes Web (Headless Mode)
         run: |
           # Rodando browser no modo headless
-          robot -d ./results -v BROWSER:headlesschrome tests/
+          robot -d ./results/web -v BROWSER:headlesschrome -l log_web.html -r report_web.html tests/web
+
+      - name: Rodar Testes de API (ServeRest)
+        run: |
+          robot -d ./results/api -l log_api.html -r report_api.html tests/api
 
       - name: Upload dos Resultados e Prints
         if: always() # Garante o upload mesmo se o teste falhar
         uses: actions/upload-artifact@v4
         with:
           name: evidencias-do-teste
-          path: |
-            ./results/log.html
-            ./results/report.html
-            ./results/*.png
+          path: ./results/
