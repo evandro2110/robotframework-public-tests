@@ -125,4 +125,4 @@ Requisição API /usuarios
 
 Valida schema de usuário criado com sucesso
     [Documentation]    Validação conforme arquivo json schema para resposta de usuario criado com sucesso
-    Validate Jsonschema From File    ${RESPONSE.json()}    ${CURDIR}..\\..\\schemas\\usuario.json
+    Validate Jsonschema From File    ${RESPONSE.json()}    ${EXECDIR}/resource/api/serverest/schemas/usuario.json
