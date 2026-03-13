@@ -2,6 +2,7 @@
 Documentation    Arquivo de contendo as variáveis comumente usadas nos de API ServeRest
 
 Library    Collections
+Library    JsonValidator
 Library    RequestsLibrary
 Library    FakerLibrary    locale=pt_br
 
@@ -15,7 +16,7 @@ ${CAMPO_NOME}              nome
 ${CAMPO_EMAIL}             email
 ${CAMPO_PWD}               password
 ${CAMPO_ADM}               administrador
-${STATUS_RETORNADO}        ${EMPTY}
+${CAMPO_MSG}               message
 ${MSG_LOGIN_SUCESS}        Login realizado com sucesso
 
 
@@ -53,7 +54,8 @@ Criar dados para novo usuário
     ...    name=${RANDOM_FIRST_NAME} ${RANDOM_LAST_NAME}
     ...    email=${RANDOM_EMAIL}
     ...    password=${RANDOM_PWD}
-    Set Suite Variable    ${DATA_USER}
+
+    Set Test Variable  ${DATA_USER}
 
 Armazenar token
     [Documentation]   Armazena o token de autenticação retornado pela API
@@ -67,5 +69,11 @@ Armazenar token
 Validar mensagem de erro no campo
     [Documentation]  Valida que a resposta da API contém a mensagem de erro esperada
     [Arguments]    ${CAMPO}    ${MENSAGEM_ESPERADA}
-    ${JSON}    Set Variable    ${RESPONSE.json()}
-    Dictionary Should Contain Item    ${JSON}    ${CAMPO}    ${MENSAGEM_ESPERADA}
+    Dictionary Should Contain Item    ${RESPONSE.json()}    ${CAMPO}    ${MENSAGEM_ESPERADA}
+
+Validar response usuário e id criado
+    [Documentation]  Valida que a resposta e guarda o id do usuário gerado
+    [Arguments]    ${CAMPO}    ${MENSAGEM_ESPERADA}
+    ${ID_USUARIO}    Set Variable    ${RESPONSE.json()['_id']}
+    Set Test Variable    ${ID_USUARIO}
+    Dictionary Should Contain Item    ${RESPONSE.json()}    ${CAMPO}    ${MENSAGEM_ESPERADA}
