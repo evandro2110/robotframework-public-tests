@@ -7,3 +7,4 @@ robotframework-appiumlibrary==3.2.1
 robotframework-pabot==5.2.2
 webdriver-manager==4.0.2
 robotframework-jsonvalidator==2.0.0
+allure-robotframework
