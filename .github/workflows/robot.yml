@@ -5,6 +5,11 @@ on:
     branches: [ main, master ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -36,11 +41,26 @@ jobs:
       - name: Rodar Testes Web (Headless Mode)
         run: |
           # Rodando browser no modo headless
-          robot -d ./results/web -v BROWSER:headlesschrome -l log_web.html -r report_web.html tests/web
+          robot -d ./results/web --listener allure_robotframework:./results/allure-results -v BROWSER:headlesschrome tests/web
 
       - name: Rodar Testes de API (ServeRest)
         run: |
-          robot -d ./results/api -l log_api.html -r report_api.html tests/api
+          robot -d ./results/api --listener allure_robotframework:./results/allure-results tests/api
+
+      - name: Gerar Allure Report
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        with:
+          allure_results: ./results/allure-results
+          allure_history: allure-history
+          keep_reports: 20
+
+      - name: Deploy do Relatório para GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: allure-history
 
       - name: Upload dos Resultados e Prints
         if: always() # Garante o upload mesmo se o teste falhar
