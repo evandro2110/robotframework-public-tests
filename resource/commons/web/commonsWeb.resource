@@ -77,6 +77,7 @@ Preencher campo e valor
     Set Test Variable    ${CAMPO}
     Set Test Variable    ${VALOR}
     Wait Until Element Is Visible    ${CAMPO}
+    Click Element        ${CAMPO}
     Input Text           ${CAMPO}    ${VALOR}
 
 Retornar aplicação ao estado original

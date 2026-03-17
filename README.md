@@ -1,12 +1,13 @@
 # 🤖 public-tests
 
-Este repositório é um projeto completo de automação inicialmente com **Robot Framework**, cobrindo as três frentes: **Web, API e Mobile**. Para planos futuros usaremos **Cypress**
+Este repositório é um projeto completo de automação inicialmente com **Robot Framework**, cobrindo as três frentes: **Web, API e Mobile**. Para planos futuros usaremos **Cypress** e/ou **Playwright**
 
 ## 🚀 Tecnologias e Bibliotecas
 - **Robot Framework**: Core do projeto.
 - **SeleniumLibrary**: Automação Web.
 - **RequestsLibrary**: Testes de API REST com validação de JSON.
 - **AppiumLibrary**: Automação Mobile (Android/iOS).
+- **JsonValidator**: Validações e schemas
 
 ## 📂 Estrutura do Projeto
 - `tests/api`: Validação de contratos e status codes.
@@ -20,6 +21,7 @@ Para garantir a manutenibilidade e o Clean Code, este projeto utiliza o Robocop 
 
 
 ## 🛠️ Como Executar
+- Python 3.11 ou superior
 
 1. Instale as dependências:
    `pip install -r requirements.txt`
@@ -30,4 +32,5 @@ Para garantir a manutenibilidade e o Clean Code, este projeto utiliza o Robocop 
    - **Mobile:** `robot -d ./logs -i mobile tests/`
 
 3. Resultado final da última execução
-![Robot Framework CI](https://github.com/evandro2110/robotframework-public-tests/actions/workflows/robot.yml/badge.svg)
+![Robot Framework CI](https://github.com/evandro2110/public-tests/actions/workflows/robot.yml/badge.svg)
+📊 Confira o Relatório Detalhado: [Allure Report Oficial](https://evandro2110.github.io/public-tests/)
