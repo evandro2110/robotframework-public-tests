@@ -17,6 +17,7 @@ ${CAMPO_EMAIL}             email
 ${CAMPO_PWD}               password
 ${CAMPO_ADM}               administrador
 ${CAMPO_MSG}               message
+${CAMPO_ID}                _id
 ${MSG_LOGIN_SUCESS}        Login realizado com sucesso
 
 

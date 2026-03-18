@@ -14,7 +14,7 @@ Test Teardown   Finalizar Teste
 *** Test Cases ***
 CT01: Validando carrinho de compras sem itens
     [Documentation]    Validação do comportamento da página ao acessar o carrinho de compras sem itens
-    [Tags]    positive
+    [Tags]    positive    trivial
     Dado que estou na página Sauce Demo
     Quando clicar no botão    ${BTN_CART}
     Então a tela de carrinho de compras deverá ser apresentada sem itens
