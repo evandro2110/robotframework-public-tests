@@ -55,11 +55,15 @@ Quando requisitar a API de consulta de usuários com filtro administrador invál
     Set Test Variable    ${PARAMETROS}
     Requisitar API GET /usuario com parâmetros
 
-# --- ENTAO
+Quando requisitar a API de consulta de usuários com filtro administrador
+    [Documentation]    Requisição da API de consulta de usuários para o campo administrador
+    [Arguments]    ${TRUE_OR_FALSE}
+    Set Test Variable    ${TRUE_OR_FALSE}
+    ${PARAMETROS}    Create Dictionary  ${CAMPO_ADM}=${TRUE_OR_FALSE}
+    Set Test Variable    ${PARAMETROS}
+    Requisitar API GET /usuario com parâmetros
 
-E a API informará que o campo ${CAMPO_ADM} deve ser true ou false
-    [Documentation]    Valida mensagem de erro informada pela API para o campo administrador
-    Validar mensagem de erro no campo    ${CAMPO_ADM}    ${MSG_ADM_INVALIDO}
+# --- ENTAO
 
 # --- E
 
@@ -70,6 +74,14 @@ E todos os usuários deverão ser retornados
 E não retornará usuários
     [Documentation]    Valida que a API retornou uma lista de usuários vazia
     Validar que não existem usuários na lista
+
+E a API informará que o campo ${CAMPO_ADM} deve ser true ou false
+    [Documentation]    Valida mensagem de erro informada pela API para o campo administrador
+    Validar mensagem de erro no campo    ${CAMPO_ADM}    ${MSG_ADM_INVALIDO}
+
+E todos os usuários apresentados possuirão o registro de administrador correto
+    [Documentation]    Chamada da KW para validar os usuários retornados estão com o campo administrador correto
+    Validar response com administradores
 
 # --- STEPS
 
@@ -110,3 +122,12 @@ Validar que não existem usuários na lista
     [Documentation]    Valida se o array de usuários está de fato vazio
     ${LISTA_USUARIOS}    Set Variable    ${RESPONSE.json()['usuarios']}
     Should Be Empty    ${LISTA_USUARIOS}
+
+Validar response com administradores
+    [Documentation]    Valida se os usuários retornados possuem o campo administrador conforme o filtro utilizado
+    ${LISTA_USUARIOS}    Set Variable    ${RESPONSE.json()['usuarios']}
+
+    FOR    ${USUARIO}    IN    @{LISTA_USUARIOS}
+        Should Be Equal    ${USUARIO['administrador']}    ${TRUE_OR_FALSE}
+        ...    msg=Erro: ${USUARIO['nome']} deveria estar como administrador = ${TRUE_OR_FALSE}.
+    END
