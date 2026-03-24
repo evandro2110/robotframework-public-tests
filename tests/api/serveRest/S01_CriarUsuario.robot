@@ -73,4 +73,3 @@ CT08: Tentar cadastrar usuário com mesmos dados
     Quando requisitar a API de cadastro de usuário informando os mesmos dados
     Então o status code será    400
     E a API deverá apresentar a mensagem    ${CAMPO_MSG}    ${MSG_EMAIL_EXISTENTE}
-    Force fail
