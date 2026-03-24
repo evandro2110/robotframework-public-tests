@@ -37,6 +37,12 @@ Então o status code será
     Should Be Equal As Integers    ${STATUS_RETORNADO}    ${STATUS_CODE}
 
 # --- E
+
+E a API deverá apresentar a mensagem
+    [Documentation]    Chama keyword para validar mensagem de resposta da API
+    [Arguments]    ${PARAMETRO}    ${MSG}
+    Validar mensagem de erro no campo    ${PARAMETRO}    ${MSG}
+
 # --- STEPS
 
 Iniciar sessão API ServeRest
