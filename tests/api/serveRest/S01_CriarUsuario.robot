@@ -64,3 +64,12 @@ CT07: Cadastro de usuário não administrador - Sucesso
     Quando requisitar a API de cadastro de usuário informando os campos corretamente    false
     Então o status code será    201
     Então a API deve informar mensagem de sucesso, juntamente com id do usuário
+
+CT08: Tentar cadastrar usuário com mesmos dados
+    [Documentation]    Validação do comportamento da API ao informar dados de usuário existente
+    [Tags]    negative    critical
+    Dado que possuo uma sessão na API ServeRest
+    E possuo um usuário cadastrado
+    Quando requisitar a API de cadastro de usuário informando os mesmos dados
+    Então o status code será    400
+    E a API deverá apresentar a mensagem    ${CAMPO_MSG}    ${MSG_EMAIL_EXISTENTE}

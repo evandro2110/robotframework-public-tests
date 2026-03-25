@@ -2,16 +2,18 @@
 Documentation    Arquivo de contendo os passos que serão usados de API de usuários ServeRest
 
 Resource         ../../../commons/api/commonsApiServeRest.resource
+Resource         ../steps/consultarUsuario.resource
 
 
 *** Variables ***
-${MSG_NOME_OBRIG}    nome é obrigatório
-${MSG_PWD_OBRIG}     password é obrigatório
-${MSG_EMAIL_OBRIG}   email é obrigatório
-${MSG_ADM_OBRIG}     administrador é obrigatório
-${MSG_ADM_VLR_INV}   administrador deve ser 'true' ou 'false'
-${MSG_USER_CREATED}  Cadastro realizado com sucesso
-${VLR_INVALIDO}      será
+${MSG_NOME_OBRIG}         nome é obrigatório
+${MSG_PWD_OBRIG}          password é obrigatório
+${MSG_EMAIL_OBRIG}        email é obrigatório
+${MSG_ADM_OBRIG}          administrador é obrigatório
+${MSG_ADM_VLR_INV}        administrador deve ser 'true' ou 'false'
+${MSG_USER_CREATED}       Cadastro realizado com sucesso
+${MSG_EMAIL_EXISTENTE}    Este email já está sendo usado
+${VLR_INVALIDO}           será
 
 
 *** Keywords ***
@@ -72,14 +74,12 @@ Quando requisitar a API de cadastro de usuário onde o campo administrador tenha
 Quando requisitar a API de cadastro de usuário informando os campos corretamente
     [Documentation]    Requisição com os campos corretos
     [Arguments]    ${ADM_S_N}
-    ${BODY}    Create Dictionary
-    ...    nome=${DATA_USER.name}
-    ...    email=${DATA_USER.email}
-    ...    password=${DATA_USER.password}
-    ...    administrador=${ADM_S_N}
+    Set Test Variable    ${ADM_S_N}
+    Criar body e requisitar API de criação de usuário
 
-    Set Test Variable    ${BODY}
-    Requisição API /usuarios
+Quando requisitar a API de cadastro de usuário informando os mesmos dados
+    [Documentation]    Chama a API de cadastro de usuário
+    Criar body e requisitar API de criação de usuário
 
 # --- ENTAO
 # Uma opção é criar um IF caso receba o compo nome X ter a mensagem Y, ao invés de fazer um então para cada cenário
@@ -110,6 +110,11 @@ Então a API deve informar mensagem de sucesso, juntamente com id do usuário
     Valida schema de usuário criado com sucesso
 
 # --- E
+
+E possuo um usuário cadastrado
+    [Documentation]    Chama a API de cadastro de usuário para garantir que exista um usuário cadastrado para o teste
+    Criar usuário    true
+
 # --- STEPS
 
 Requisição API /usuarios
@@ -126,3 +131,14 @@ Requisição API /usuarios
 Valida schema de usuário criado com sucesso
     [Documentation]    Validação conforme arquivo json schema para resposta de usuario criado com sucesso
     Validate Jsonschema From File    ${RESPONSE.json()}    ${CURDIR}/../schemas/usuario_criado.json
+
+Criar body e requisitar API de criação de usuário
+    [Documentation]    Cria o body para requisição usando os dados da variável de suíte
+    ${BODY}    Create Dictionary
+    ...    nome=${DATA_USER.name}
+    ...    email=${DATA_USER.email}
+    ...    password=${DATA_USER.password}
+    ...    administrador=${ADM_S_N}
+
+    Set Test Variable    ${BODY}
+    Requisição API /usuarios
