@@ -78,6 +78,11 @@ Validar mensagem de erro no campo
     [Arguments]    ${CAMPO}    ${MENSAGEM_ESPERADA}
     Dictionary Should Contain Item    ${RESPONSE.json()}    ${CAMPO}    ${MENSAGEM_ESPERADA}
 
+Validar mensagem de response
+    [Documentation]  Valida que a resposta da API contém a mensagem esperada
+    [Arguments]    ${CAMPO}    ${MENSAGEM_ESPERADA}
+    Dictionary Should Contain Item    ${RESPONSE.json()}    ${CAMPO}    ${MENSAGEM_ESPERADA}
+
 Validar response usuário e id criado
     [Documentation]  Valida que a resposta e guarda o id do usuário gerado
     [Arguments]    ${CAMPO}    ${MENSAGEM_ESPERADA}
