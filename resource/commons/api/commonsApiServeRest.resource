@@ -51,7 +51,7 @@ Iniciar sessão API ServeRest
     ...    Content-type=application/json
     Create Session    alias=${ALIAS_API_SERVEREST}    url=${BASE_URL_SERVEREST}    headers=${HEADERS}    verify=True
 
-Criar dados para novo usuário
+Criar dados para usuário
     [Documentation]  Gera dados aleatórios para criação de um novo usuário e armazena em variável de suíte
     ${RANDOM_FIRST_NAME}    FakerLibrary.First Name
     ${RANDOM_LAST_NAME}     FakerLibrary.Last Name
