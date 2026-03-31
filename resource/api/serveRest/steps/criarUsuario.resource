@@ -2,6 +2,7 @@
 Documentation    Arquivo de contendo os passos que serão usados de API de usuários ServeRest
 
 Resource         ../../../commons/api/commonsApiServeRest.resource
+Resource         ../steps/consultarUsuario.resource
 
 
 *** Variables ***
