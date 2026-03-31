@@ -14,7 +14,8 @@ CT01: Atualiza o nome de um usuário cadastrado
     [Documentation]    Validação do comportamento ao requisitar API de edição de usuário para atualizar o nome
     [Tags]    positive
     Dado que possuo uma sessão na API ServeRest
-    E possuo um usuário previamente criado
+    E possuo um usuário previamente criado    true
     Quando requisitar a API de edição de usuários
     Então o status code será    200
     E deverá ser retornado a mensagem de sucesso da edição
+    E os dados da edição serão gravados com sucesso

@@ -2,9 +2,10 @@
 Documentation    Arquivo que contém os testes da API ServeRest - Post /usuarios
 
 # Hooks e Keywords Globais
+Resource    ../../../resource/commons/api/commonsApiServeRest.resource
 Resource    ../../../resource/api/serveRest/steps/criarUsuario.resource
 
-Test Setup       Criar dados para novo usuário
+Test Setup       Criar dados para usuário
 Test Teardown    Delete All Sessions
 
 

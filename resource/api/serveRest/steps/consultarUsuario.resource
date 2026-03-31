@@ -148,7 +148,7 @@ Criar usuário
     [Documentation]    Passo para criar um usuário utilizando a API de criação
     [Arguments]    ${ADM_S_N}
     Set Test Variable   ${ADM_S_N}
-    Criar dados para novo usuário
+    Criar dados para usuário
     ${BODY}    Create Dictionary
     ...    nome=${DATA_USER.name}
     ...    email=${DATA_USER.email}
