@@ -14,12 +14,21 @@ ${MSG_SUCESSO_EDICAO}  Registro alterado com sucesso
 # --- QUANDO
 
 Quando requisitar a API de edição de usuários
-    [Documentation]    Keyword para resquitar o json da edição
+    [Documentation]    Keyword para resquisitar o json da edição
     Criar dados para usuário
     Requisitar API PUT /usuarios
 
+Quando requisitar a API de edição para um usuário com e-mail inválido
+    [Documentation]    Keyword para requisitar o json de edição com e-mail inválido
+    Criar dados para usuário
+    Requisitar API PUT /usuarios com e-mail inválido
+
 # --- ENTAO
 # --- E
+
+E deverá ser retornado a mensagem de e-mail inválido
+    [Documentation]    Valida a mensagem de erro de e-mail inválido
+    Validar mensagem de erro no campo    ${CAMPO_EMAIL}    ${MSG_EMAIL_INVALIDO}
 
 E deverá ser retornado a mensagem de sucesso da edição
     [Documentation]    Valida mensagem de resposta da API para edição de usuário
@@ -47,6 +56,20 @@ Requisitar API PUT /usuarios
 
     RETURN    ${RESPONSE.json()}
 
+Requisitar API PUT /usuarios sem o parametro nome
+    [Documentation]    Requisição da API de edição de usuários sem o parametro nome
+    Preparar body para edição sem o parametro nome
+    ${RESPONSE}    PUT On Session
+    ...    alias=${ALIAS_API_SERVEREST}
+    ...    url=${URL_USUARIOS}/${ID_USUARIO}
+    ...    json=${BODY}
+    ...    expected_status=any
+
+    Set Test Variable    ${RESPONSE}
+    Set Test Variable    ${STATUS_RETORNADO}    ${RESPONSE.status_code}
+
+    RETURN    ${RESPONSE.json()}
+
 Criar massa de usuário para edição
     [Documentation]    Cria massa de usuário para a edição
     [Arguments]    ${ADM_S_N}
@@ -55,6 +78,15 @@ Criar massa de usuário para edição
     Set Test Variable    ${ADM_S_N}
     Criar body e requisitar API de criação de usuário
     Validar response usuário e id criado    ${CAMPO_MSG}    ${MSG_USER_CREATED}
+
+Preparar body para edição sem o parametro nome 
+    [Documentation]    Preparando body para edição de usuário sem o parametro nome
+    ${BODY}    Create Dictionary
+    ...    email=${DATA_USER.email}
+    ...    password=${DATA_USER.password}
+    ...    administrador=${ADM_S_N}
+
+    Set Test Variable    ${BODY}
 
 Preparar body para edição
     [Documentation]    Preparando body para edição de usuário
