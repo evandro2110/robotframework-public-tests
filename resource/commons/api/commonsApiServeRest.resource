@@ -20,6 +20,7 @@ ${CAMPO_MSG}               message
 ${CAMPO_ID}                _id
 ${MSG_LOGIN_SUCESS}        Login realizado com sucesso
 ${MSG_EMAIL_INVALIDO}      email deve ser um email válido
+${MSG_NOME_OBRIGATORIO}    nome é obrigatório
 
 
 *** Keywords ***
