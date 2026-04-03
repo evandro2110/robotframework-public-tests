@@ -79,7 +79,7 @@ Criar massa de usuário para edição
     Criar body e requisitar API de criação de usuário
     Validar response usuário e id criado    ${CAMPO_MSG}    ${MSG_USER_CREATED}
 
-Preparar body para edição sem o parametro nome 
+Preparar body para edição sem o parametro nome
     [Documentation]    Preparando body para edição de usuário sem o parametro nome
     ${BODY}    Create Dictionary
     ...    email=${DATA_USER.email}

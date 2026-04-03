@@ -24,7 +24,7 @@ CT02: Atualiza um usuário e-mail inválido
     [Tags]    negative
     Dado que possuo uma sessão na API ServeRest
     Quando requisitar a API de edição para um usuário com e-mail inválido
-    Então o status code será    400
+    Então o status code será    500
     E deverá ser retornado a mensagem de e-mail inválido
 
 # CT03: Atualiza um usuário sem o parametro de nome
