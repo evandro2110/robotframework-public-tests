@@ -27,10 +27,34 @@ CT02: Atualiza um usuário e-mail inválido
     Então o status code será    400
     E deverá ser retornado a mensagem de e-mail inválido
 
-CT03: Atualiza um usuário sem o parmetro de nome
-    [Documentation]    Validação do comportamento ao requisitar API de edição de usuário sem parametro de nome
+CT03: Atualiza um usuário sem o parâmetro de nome
+    [Documentation]    Validação do comportamento ao requisitar API de edição de usuário sem parâmetro de nome
     [Tags]    negative
     Dado que possuo uma sessão na API ServeRest
-    Quando requisitar a API de edição para um usuário sem parametro de nome
+    Quando requisitar a API de edição para um usuário sem parâmetro de nome
     Então o status code será    400
     E deverá ser retornado a mensagem de nome obrigatório
+
+CT04: Atualiza um usuário sem o parâmetro de e-mail
+    [Documentation]    Validação do comportamento ao requisitar API de edição de usuário sem parâmetro de e-mail
+    [Tags]    negative
+    Dado que possuo uma sessão na API ServeRest
+    Quando requisitar a API de edição para um usuário sem parâmetro de e-mail
+    Então o status code será    400
+    E deverá ser retornado a mensagem de e-mail obrigatório
+
+CT05: Atualiza um usuário sem o parâmetro de password
+    [Documentation]    Validação do comportamento ao requisitar API de edição de usuário sem parâmetro de password
+    [Tags]    negative
+    Dado que possuo uma sessão na API ServeRest
+    Quando requisitar a API de edição para um usuário sem parâmetro de password
+    Então o status code será    400
+    E deverá ser retornado a mensagem de password obrigatório
+
+CT06: Atualiza um usuário sem o parâmetro de administrador
+    [Documentation]    Validação do comportamento ao requisitar API de edição de usuário sem parâmetro de adm
+    [Tags]    negative
+    Dado que possuo uma sessão na API ServeRest
+    Quando requisitar a API de edição para um usuário sem parâmetro de administrador
+    Então o status code será    400
+    E deverá ser retornado a mensagem de administrador obrigatório

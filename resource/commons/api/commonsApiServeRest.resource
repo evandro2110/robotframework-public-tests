@@ -21,6 +21,9 @@ ${CAMPO_ID}                _id
 ${MSG_LOGIN_SUCESS}        Login realizado com sucesso
 ${MSG_EMAIL_INVALIDO}      email deve ser um email válido
 ${MSG_NOME_OBRIGATORIO}    nome é obrigatório
+${MSG_EMAIL_OBRIGATORIO}   email é obrigatório
+${MSG_SENHA_OBRIGATORIO}   password é obrigatório
+${MSG_ADM_OBRIGATORIO}     administrador é obrigatório
 
 
 *** Keywords ***
