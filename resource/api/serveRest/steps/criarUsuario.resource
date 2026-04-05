@@ -6,10 +6,6 @@ Resource         ../steps/consultarUsuario.resource
 
 
 *** Variables ***
-${MSG_NOME_OBRIG}         nome é obrigatório
-${MSG_PWD_OBRIG}          password é obrigatório
-${MSG_EMAIL_OBRIG}        email é obrigatório
-${MSG_ADM_OBRIG}          administrador é obrigatório
 ${MSG_ADM_VLR_INV}        administrador deve ser 'true' ou 'false'
 ${MSG_USER_CREATED}       Cadastro realizado com sucesso
 ${MSG_EMAIL_EXISTENTE}    Este email já está sendo usado
@@ -86,19 +82,19 @@ Quando requisitar a API de cadastro de usuário informando os mesmos dados
 
 Então a API deve informar que o campo nome é obrigatório
     [Documentation]   Valida que a resposta da API contém a mensagem de campo obrigatório para o nome
-    Validar mensagem de erro no campo    ${CAMPO_NOME}    ${MSG_NOME_OBRIG}
+    Validar mensagem de erro no campo    ${CAMPO_NOME}    ${MSG_NOME_OBRIGATORIO}
 
 Então a API deve informar que o campo senha é obrigatório
     [Documentation]   Valida que a resposta da API contém a mensagem de campo obrigatório senha
-    Validar mensagem de erro no campo    ${CAMPO_PWD}    ${MSG_PWD_OBRIG}
+    Validar mensagem de erro no campo    ${CAMPO_PWD}    ${MSG_SENHA_OBRIGATORIO}
 
 Então a API deve informar que o campo email é obrigatório
     [Documentation]   Valida que a resposta da API contém a mensagem de campo obrigatório email
-    Validar mensagem de erro no campo    ${CAMPO_EMAIL}    ${MSG_EMAIL_OBRIG}
+    Validar mensagem de erro no campo    ${CAMPO_EMAIL}    ${MSG_EMAIL_OBRIGATORIO}
 
 Então a API deve informar que o campo administrador é obrigatório
     [Documentation]    Valida mensagem em relação ao campo
-    Validar mensagem de erro no campo    ${CAMPO_ADM}    ${MSG_ADM_OBRIG}
+    Validar mensagem de erro no campo    ${CAMPO_ADM}    ${MSG_ADM_OBRIGATORIO}
 
 Então a API deve informar que o campo administrador recebe true ou false
     [Documentation]    Valida mensagem em relação ao campo

@@ -8,16 +8,6 @@ Esta documentação descreve o projeto **public-tests**, uma solução robusta d
 
 O propósito deste projeto é garantir a qualidade contínua de aplicações através de testes automatizados de ponta a ponta (E2E) e de integração de serviços. A automação foi construída utilizando o **Robot Framework** como core, aproveitando a sintaxe baseada em palavras-chave (Keywords) para tornar os testes legíveis tanto para técnicos quanto para stakeholders.
 
-### Tecnologias e Bibliotecas Utilizadas
-*   **Linguagem:** Python 3.11 ou superior.
-*   **Framework de Testes:** Robot Framework.
-*   **Automação Web:** SeleniumLibrary (com suporte a Page Object Model).
-*   **Automação de API:** RequestsLibrary para requisições REST e JsonValidator para validação de schemas.
-*   **Automação Mobile:** AppiumLibrary.
-*   **Geração de Dados:** FakerLibrary para criação de massas de teste dinâmicas.
-*   **Qualidade de Código:** Robocop para análise estática (linter).
-*   **Relatórios:** Allure Report e logs nativos do Robot Framework.
-
 ---
 
 ## 2. Arquitetura e Estrutura
@@ -76,35 +66,8 @@ As Keywords foram criadas para abstrair a complexidade do código e permitir o r
 
 ---
 
-## 5. Instruções de Execução
-
-### Pré-requisitos
-Certifique-se de ter o Python 3.11+ instalado e o diretório do projeto configurado.
-
-```bash
-# 1. Instalar dependências necessárias
-pip install -r requirements.txt
-
-# 2. Executar análise estática (Clean Code)
-robocop .
-```
-
-### Comandos para Rodar os Testes
-A execução é baseada em tags para facilitar a segmentação dos testes no CI/CD.
-
-```bash
-# Executar todos os testes de API
-robot -d ./logs -i api tests/
-
-# Executar todos os testes Web
-robot -d ./logs -i web tests/
-
-# Executar testes por gravidade ou tipo (Ex: Critical)
-robot -d ./logs -i critical tests/
-```
-
 ### Relatórios
-Após a execução, os resultados (log.html e report.html) estarão disponíveis na pasta `./logs`. Para visualizar o relatório avançado, utilize o Allure.
+Após a execução, os resultados (log.html e report.html) estarão disponíveis na pasta `./logs`. Para visualizar o relatório avançado, utilize o Allure descrito melhor dentro do arquivo README.md
 
 ---
 
