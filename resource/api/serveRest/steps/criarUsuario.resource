@@ -7,7 +7,6 @@ Resource         ../steps/consultarUsuario.resource
 
 *** Variables ***
 ${MSG_ADM_VLR_INV}        administrador deve ser 'true' ou 'false'
-${MSG_USER_CREATED}       Cadastro realizado com sucesso
 ${MSG_EMAIL_EXISTENTE}    Este email já está sendo usado
 ${VLR_INVALIDO}           será
 

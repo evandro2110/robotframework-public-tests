@@ -8,6 +8,7 @@ browser-screenshots/
 pabot_results/
 results/
 listener_output*
+.robot-test-output
 
 # --- Python ---
 # Ignora ambientes virtuais e cache do Python

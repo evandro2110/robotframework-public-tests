@@ -3,6 +3,7 @@ Documentation    Arquivo de contendo as variáveis comumente usadas nos de API S
 
 Library    Collections
 Library    JsonValidator
+Library    JSONLibrary
 Library    RequestsLibrary
 Library    FakerLibrary    locale=pt_br
 
@@ -24,6 +25,9 @@ ${MSG_NOME_OBRIGATORIO}    nome é obrigatório
 ${MSG_EMAIL_OBRIGATORIO}   email é obrigatório
 ${MSG_SENHA_OBRIGATORIO}   password é obrigatório
 ${MSG_ADM_OBRIGATORIO}     administrador é obrigatório
+${MSG_USUARIO_REMOVIDO}    Registro excluído com sucesso
+${MSG_USER_CREATED}        Cadastro realizado com sucesso
+${MSG_NENHUM_REG_REMOV}    Nenhum registro excluído
 
 
 *** Keywords ***
@@ -48,6 +52,11 @@ E a API deverá apresentar a mensagem
     [Arguments]    ${PARAMETRO}    ${MSG}
     Validar mensagem de erro no campo    ${PARAMETRO}    ${MSG}
 
+E deverá ser retornada a mensagem no response
+    [Documentation]    Chama keyword para validar mensagem de resposta da API
+    [Arguments]    ${CAMPO}    ${MSG}
+    Validar mensagem de response  ${CAMPO}    ${MSG}
+
 # --- STEPS
 
 Iniciar sessão API ServeRest
@@ -68,6 +77,25 @@ Criar dados para usuário
     ...    password=${RANDOM_PWD}
 
     Set Test Variable  ${DATA_USER}
+
+Criar usuário para testes
+    [Documentation]  Chama a API de criação de usuário para garantir que exista um usuário cadastrado para os testes
+    Iniciar sessão API ServeRest
+    Criar dados para usuário
+    ${BODY}    Load Json From File    ${CURDIR}/../../api/serveRest/payload/criarUsuario.json
+    ${BODY}    Update Value To Json    ${BODY}    $..nome        ${DATA_USER.name}
+    ${BODY}    Update Value To Json    ${BODY}    $..email       ${DATA_USER.email}
+    ${BODY}    Update Value To Json    ${BODY}    $..password    ${DATA_USER.password}
+    Set Test Variable    ${BODY}
+    ${RESPONSE}    POST On Session
+    ...    alias=${ALIAS_API_SERVEREST}
+    ...    url=${URL_USUARIOS}
+    ...    json=${BODY}
+    ...    expected_status=any
+    Set Test Variable    ${RESPONSE}
+    Set Test Variable    ${STATUS_RETORNADO}    ${RESPONSE.status_code}
+    Validar response usuário e id criado        ${CAMPO_MSG}    ${MSG_USER_CREATED}
+    RETURN    ${RESPONSE.json()}
 
 Armazenar token
     [Documentation]   Armazena o token de autenticação retornado pela API
