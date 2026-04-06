@@ -82,7 +82,7 @@ Criar usuário para testes
     [Documentation]  Chama a API de criação de usuário para garantir que exista um usuário cadastrado para os testes
     Iniciar sessão API ServeRest
     Criar dados para usuário
-    ${BODY}    Load Json From File    ${CURDIR}\\..\\..\\api\\serveRest\\payload\\criarUsuario.json
+    ${BODY}    Load Json From File    ${CURDIR}/../../api/serveRest/payload/criarUsuario.json
     ${BODY}    Update Value To Json    ${BODY}    $..nome        ${DATA_USER.name}
     ${BODY}    Update Value To Json    ${BODY}    $..email       ${DATA_USER.email}
     ${BODY}    Update Value To Json    ${BODY}    $..password    ${DATA_USER.password}
