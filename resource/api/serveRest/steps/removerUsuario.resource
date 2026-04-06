@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    Arquivo de contendo os passos que serão usados de API DELETE /usuarios ServeRest
+Documentation    Arquivo contendo os passos que serão usados de API DELETE /usuarios ServeRest
 
 Resource         ../../../commons/api/commonsApiServeRest.resource
 
