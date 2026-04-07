@@ -112,17 +112,6 @@ E possuo um usuário cadastrado
 
 # --- STEPS
 
-# Requisitar API POST /usuarios
-#     [Documentation]    Requisição isolada para api /usuarios
-#     ${RESPONSE}    POST On Session
-#     ...    alias=${ALIAS_API_SERVEREST}
-#     ...    url=${URL_USUARIOS}
-#     ...    json=${BODY}
-#     ...    expected_status=any
-#     Set Test Variable    ${RESPONSE}
-#     Set Test Variable    ${STATUS_RETORNADO}    ${RESPONSE.status_code}
-#     RETURN    ${RESPONSE.json()}
-
 Valida schema de usuário criado com sucesso
     [Documentation]    Validação conforme arquivo json schema para resposta de usuario criado com sucesso
     Validate Jsonschema From File    ${RESPONSE.json()}    ${CURDIR}/../schemas/usuario_criado.json
