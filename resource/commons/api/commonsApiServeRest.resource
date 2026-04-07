@@ -50,7 +50,7 @@ Então o status code será
 E a API deverá apresentar a mensagem
     [Documentation]    Chama keyword para validar mensagem de resposta da API
     [Arguments]    ${PARAMETRO}    ${MSG}
-    Validar mensagem de erro no campo    ${PARAMETRO}    ${MSG}
+    Validar mensagem de response    ${PARAMETRO}    ${MSG}
 
 E deverá ser retornada a mensagem no response
     [Documentation]    Chama keyword para validar mensagem de resposta da API
@@ -79,14 +79,23 @@ Criar dados para usuário
     Set Test Variable  ${DATA_USER}
 
 Criar usuário para testes
-    [Documentation]  Chama a API de criação de usuário para garantir que exista um usuário cadastrado para os testes
+    [Documentation]    Prepara sessão e dados para criar usuário
+    [Arguments]    ${ADM_S_N}=false
     Iniciar sessão API ServeRest
     Criar dados para usuário
-    ${BODY}    Load Json From File    ${CURDIR}/../../api/serveRest/payload/criarUsuario.json
-    ${BODY}    Update Value To Json    ${BODY}    $..nome        ${DATA_USER.name}
-    ${BODY}    Update Value To Json    ${BODY}    $..email       ${DATA_USER.email}
-    ${BODY}    Update Value To Json    ${BODY}    $..password    ${DATA_USER.password}
+    ${ADM_S_N}    Set Variable If    '${ADM_S_N}' == '${EMPTY}'    false    ${ADM_S_N}
+    Set Test Variable    ${ADM_S_N}
+    ${BODY}    Load Json From File     ${CURDIR}/../../api/serveRest/payload/criarUsuario.json
+    ${BODY}    Update Value To Json    ${BODY}    $..nome            ${DATA_USER.name}
+    ${BODY}    Update Value To Json    ${BODY}    $..email           ${DATA_USER.email}
+    ${BODY}    Update Value To Json    ${BODY}    $..password        ${DATA_USER.password}
+    ${BODY}    Update Value To Json    ${BODY}    $..administrador   ${ADM_S_N}
     Set Test Variable    ${BODY}
+    Requisitar API POST /usuarios
+    Validar response usuário e id criado        ${CAMPO_MSG}    ${MSG_USER_CREATED}
+
+Requisitar API POST /usuarios
+    [Documentation]    Passos para requisição da API POST /usuarios
     ${RESPONSE}    POST On Session
     ...    alias=${ALIAS_API_SERVEREST}
     ...    url=${URL_USUARIOS}
@@ -94,7 +103,7 @@ Criar usuário para testes
     ...    expected_status=any
     Set Test Variable    ${RESPONSE}
     Set Test Variable    ${STATUS_RETORNADO}    ${RESPONSE.status_code}
-    Validar response usuário e id criado        ${CAMPO_MSG}    ${MSG_USER_CREATED}
+
     RETURN    ${RESPONSE.json()}
 
 Armazenar token
@@ -105,11 +114,6 @@ Armazenar token
     Dictionary Should Contain Item    ${RESPONSE.json()}    message    ${MSG_LOGIN_SUCESS}
     ${TOKEN}     Get From Dictionary    ${RESPONSE.json()}    authorization
     Set Suite Variable    ${TOKEN}
-
-Validar mensagem de erro no campo
-    [Documentation]  Valida que a resposta da API contém a mensagem de erro esperada
-    [Arguments]    ${CAMPO}    ${MENSAGEM_ESPERADA}
-    Dictionary Should Contain Item    ${RESPONSE.json()}    ${CAMPO}    ${MENSAGEM_ESPERADA}
 
 Validar mensagem de response
     [Documentation]  Valida que a resposta da API contém a mensagem esperada
