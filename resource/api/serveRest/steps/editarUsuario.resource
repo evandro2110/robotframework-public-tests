@@ -48,7 +48,7 @@ Quando requisitar a API de edição para um usuário sem parâmetro de administr
 
 E deverá ser retornado a mensagem de e-mail inválido
     [Documentation]    Valida a mensagem de erro de e-mail inválido
-    Validar mensagem de erro no campo    ${CAMPO_EMAIL}    ${MSG_EMAIL_INVALIDO}
+    Validar mensagem de response    ${CAMPO_EMAIL}    ${MSG_EMAIL_INVALIDO}
 
 E deverá ser retornado a mensagem de sucesso da edição
     [Documentation]    Valida mensagem de resposta da API para edição de usuário
@@ -56,19 +56,19 @@ E deverá ser retornado a mensagem de sucesso da edição
 
 E deverá ser retornado a mensagem de nome obrigatório
     [Documentation]    Valida mensagem de resposta da API para edição de usuário sem parâmetro de nome
-    Validar mensagem de erro no campo    ${CAMPO_NOME}    ${MSG_NOME_OBRIGATORIO}
+    Validar mensagem de response    ${CAMPO_NOME}    ${MSG_NOME_OBRIGATORIO}
 
 E deverá ser retornado a mensagem de e-mail obrigatório
     [Documentation]    Valida mensagem de resposta da API para edição de usuário sem parâmetro de e-mail
-    Validar mensagem de erro no campo    ${CAMPO_EMAIL}    ${MSG_EMAIL_OBRIGATORIO}
+    Validar mensagem de response    ${CAMPO_EMAIL}    ${MSG_EMAIL_OBRIGATORIO}
 
 E deverá ser retornado a mensagem de password obrigatório
     [Documentation]    Valida mensagem de resposta da API para edição de usuário sem parâmetro de password
-    Validar mensagem de erro no campo    ${CAMPO_PWD}    ${MSG_SENHA_OBRIGATORIO}
+    Validar mensagem de response    ${CAMPO_PWD}    ${MSG_SENHA_OBRIGATORIO}
 
 E deverá ser retornado a mensagem de administrador obrigatório
     [Documentation]    Valida mensagem de resposta da API para edição de usuário sem parâmetro adm
-    Validar mensagem de erro no campo    ${CAMPO_ADM}    ${MSG_ADM_OBRIGATORIO}
+    Validar mensagem de response    ${CAMPO_ADM}    ${MSG_ADM_OBRIGATORIO}
 
 E os dados da edição serão gravados com sucesso
     [Documentation]    Valida se os dados da edição foram gravados com sucesso

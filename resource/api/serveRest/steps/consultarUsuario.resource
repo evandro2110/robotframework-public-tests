@@ -77,7 +77,7 @@ E não retornará usuários
 
 E a API informará que o campo ${CAMPO_ADM} deve ser true ou false
     [Documentation]    Valida mensagem de erro informada pela API para o campo administrador
-    Validar mensagem de erro no campo    ${CAMPO_ADM}    ${MSG_ADM_INVALIDO}
+    Validar mensagem de response    ${CAMPO_ADM}    ${MSG_ADM_INVALIDO}
 
 E todos os usuários apresentados possuirão o registro de administrador correto
     [Documentation]    Chamada da KW para validar os usuários retornados estão com o campo administrador correto
@@ -86,8 +86,8 @@ E todos os usuários apresentados possuirão o registro de administrador correto
 E possuo um usuário previamente criado
     [Documentation]    Chama a KW para criar um usuário antes de realizar a consulta
     [Arguments]    ${ADM_S_N}
-    Set Test Variable    ${ADM_S_N}
-    Criar usuário        ${ADM_S_N}
+    Set Test Variable            ${ADM_S_N}
+    Criar usuário para testes    ${ADM_S_N}
 
 E os dados do usuário serão apresentados corretamente
     [Documentation]    Valida se os dados do usuário criado estão corretos na resposta da API
@@ -143,18 +143,3 @@ Validar response com administradores
         Should Be Equal    ${USUARIO['administrador']}    ${TRUE_OR_FALSE}
         ...    msg=Erro: ${USUARIO['nome']} deveria estar como administrador = ${TRUE_OR_FALSE}.
     END
-
-Criar usuário
-    [Documentation]    Passo para criar um usuário utilizando a API de criação
-    [Arguments]    ${ADM_S_N}
-    Set Test Variable   ${ADM_S_N}
-    Criar dados para usuário
-    ${BODY}    Create Dictionary
-    ...    nome=${DATA_USER.name}
-    ...    email=${DATA_USER.email}
-    ...    password=${DATA_USER.password}
-    ...    administrador=${ADM_S_N}
-
-    Set Test Variable    ${BODY}
-    Requisição API /usuarios
-    Validar response usuário e id criado    ${CAMPO_MSG}    ${MSG_USER_CREATED}

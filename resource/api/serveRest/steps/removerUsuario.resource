@@ -17,6 +17,7 @@ Quando requisitar a API de remoção de usuário
 E possuo um ID de usuário inexistente
     [Documentation]    Gera um ID aleatório para usuário, garantindo que seja um ID inexistente
     Criar ID inexistente
+
 # --- STEPS
 
 Requisitar API DELETE /usuario

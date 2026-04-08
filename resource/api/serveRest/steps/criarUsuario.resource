@@ -23,7 +23,7 @@ Quando requisitar a API de cadastro de usuário sem informar o nome
     ...    administrador=false
 
     Set Test Variable    ${BODY}
-    Requisição API /usuarios
+    Requisitar API POST /usuarios
 
 Quando requisitar a API de cadastro de usuário sem informar a senha
     [Documentation]    Requisição da API sem informar campo senha
@@ -33,7 +33,7 @@ Quando requisitar a API de cadastro de usuário sem informar a senha
     ...    administrador=true
 
     Set Test Variable    ${BODY}
-    Requisição API /usuarios
+    Requisitar API POST /usuarios
 
 Quando requisitar a API de cadastro de usuário sem informar o email
     [Documentation]    Requisição da API sem informar campo email
@@ -43,7 +43,7 @@ Quando requisitar a API de cadastro de usuário sem informar o email
     ...    administrador=false
 
     Set Test Variable    ${BODY}
-    Requisição API /usuarios
+    Requisitar API POST /usuarios
 
 Quando requisitar a API de cadastro de usuário sem informar se é administrador
     [Documentation]    Requisição da API sem informar campo administrador
@@ -53,7 +53,7 @@ Quando requisitar a API de cadastro de usuário sem informar se é administrador
     ...    password=${DATA_USER.password}
 
     Set Test Variable    ${BODY}
-    Requisição API /usuarios
+    Requisitar API POST /usuarios
 
 Quando requisitar a API de cadastro de usuário onde o campo administrador tenha valor inválido
     [Documentation]    Requisição da API informando o campo administrador com valor inválido
@@ -64,7 +64,7 @@ Quando requisitar a API de cadastro de usuário onde o campo administrador tenha
     ...    administrador=${VLR_INVALIDO}
 
     Set Test Variable    ${BODY}
-    Requisição API /usuarios
+    Requisitar API POST /usuarios
 
 Quando requisitar a API de cadastro de usuário informando os campos corretamente
     [Documentation]    Requisição com os campos corretos
@@ -81,23 +81,23 @@ Quando requisitar a API de cadastro de usuário informando os mesmos dados
 
 Então a API deve informar que o campo nome é obrigatório
     [Documentation]   Valida que a resposta da API contém a mensagem de campo obrigatório para o nome
-    Validar mensagem de erro no campo    ${CAMPO_NOME}    ${MSG_NOME_OBRIGATORIO}
+    Validar mensagem de response    ${CAMPO_NOME}    ${MSG_NOME_OBRIGATORIO}
 
 Então a API deve informar que o campo senha é obrigatório
     [Documentation]   Valida que a resposta da API contém a mensagem de campo obrigatório senha
-    Validar mensagem de erro no campo    ${CAMPO_PWD}    ${MSG_SENHA_OBRIGATORIO}
+    Validar mensagem de response    ${CAMPO_PWD}    ${MSG_SENHA_OBRIGATORIO}
 
 Então a API deve informar que o campo email é obrigatório
     [Documentation]   Valida que a resposta da API contém a mensagem de campo obrigatório email
-    Validar mensagem de erro no campo    ${CAMPO_EMAIL}    ${MSG_EMAIL_OBRIGATORIO}
+    Validar mensagem de response    ${CAMPO_EMAIL}    ${MSG_EMAIL_OBRIGATORIO}
 
 Então a API deve informar que o campo administrador é obrigatório
     [Documentation]    Valida mensagem em relação ao campo
-    Validar mensagem de erro no campo    ${CAMPO_ADM}    ${MSG_ADM_OBRIGATORIO}
+    Validar mensagem de response    ${CAMPO_ADM}    ${MSG_ADM_OBRIGATORIO}
 
 Então a API deve informar que o campo administrador recebe true ou false
     [Documentation]    Valida mensagem em relação ao campo
-    Validar mensagem de erro no campo    ${CAMPO_ADM}    ${MSG_ADM_VLR_INV}
+    Validar mensagem de response    ${CAMPO_ADM}    ${MSG_ADM_VLR_INV}
 
 Então a API deve informar mensagem de sucesso, juntamente com id do usuário
     [Documentation]    Valida mensagem em relação ao campo
@@ -108,20 +108,9 @@ Então a API deve informar mensagem de sucesso, juntamente com id do usuário
 
 E possuo um usuário cadastrado
     [Documentation]    Chama a API de cadastro de usuário para garantir que exista um usuário cadastrado para o teste
-    Criar usuário    true
+    Criar usuário para testes    true
 
 # --- STEPS
-
-Requisição API /usuarios
-    [Documentation]    Requisição isolada para api /usuarios
-    ${RESPONSE}    POST On Session
-    ...    alias=${ALIAS_API_SERVEREST}
-    ...    url=${URL_USUARIOS}
-    ...    json=${BODY}
-    ...    expected_status=any
-    Set Test Variable    ${RESPONSE}
-    Set Test Variable    ${STATUS_RETORNADO}    ${RESPONSE.status_code}
-    RETURN    ${RESPONSE.json()}
 
 Valida schema de usuário criado com sucesso
     [Documentation]    Validação conforme arquivo json schema para resposta de usuario criado com sucesso
@@ -136,4 +125,4 @@ Criar body e requisitar API de criação de usuário
     ...    administrador=${ADM_S_N}
 
     Set Test Variable    ${BODY}
-    Requisição API /usuarios
+    Requisitar API POST /usuarios
