@@ -8,73 +8,26 @@ Resource         ../steps/consultarUsuario.resource
 *** Variables ***
 ${MSG_ADM_VLR_INV}        administrador deve ser 'true' ou 'false'
 ${MSG_EMAIL_EXISTENTE}    Este email já está sendo usado
-${VLR_INVALIDO}           será
+${VLR_INVALIDO}           tst
 
 
 *** Keywords ***
 # --- DADO
 # --- QUANDO
-# To do: após evoluir o projeto posso isolar as requisições criando uma tag para cada teste
-Quando requisitar a API de cadastro de usuário sem informar o nome
+
+Quando requisitar a API POST /usuario
     [Documentation]   Requisita a API de cadastro de usuário sem informar o campo nome
-    ${BODY}    Create Dictionary
-    ...    email=${DATA_USER.email}
-    ...    password=${DATA_USER.password}
-    ...    administrador=false
-
-    Set Test Variable    ${BODY}
-    Requisitar API POST /usuarios
-
-Quando requisitar a API de cadastro de usuário sem informar a senha
-    [Documentation]    Requisição da API sem informar campo senha
-    ${BODY}    Create Dictionary
-    ...    nome=${DATA_USER.name}
-    ...    email=${DATA_USER.email}
-    ...    administrador=true
-
-    Set Test Variable    ${BODY}
-    Requisitar API POST /usuarios
-
-Quando requisitar a API de cadastro de usuário sem informar o email
-    [Documentation]    Requisição da API sem informar campo email
-    ${BODY}    Create Dictionary
-    ...    nome=${DATA_USER.name}
-    ...    password=${DATA_USER.password}
-    ...    administrador=false
-
-    Set Test Variable    ${BODY}
-    Requisitar API POST /usuarios
-
-Quando requisitar a API de cadastro de usuário sem informar se é administrador
-    [Documentation]    Requisição da API sem informar campo administrador
-    ${BODY}    Create Dictionary
-    ...    nome=${DATA_USER.name}
-    ...    email=${DATA_USER.email}
-    ...    password=${DATA_USER.password}
-
-    Set Test Variable    ${BODY}
-    Requisitar API POST /usuarios
-
-Quando requisitar a API de cadastro de usuário onde o campo administrador tenha valor inválido
-    [Documentation]    Requisição da API informando o campo administrador com valor inválido
-    ${BODY}    Create Dictionary
-    ...    nome=${DATA_USER.name}
-    ...    email=${DATA_USER.email}
-    ...    password=${DATA_USER.password}
-    ...    administrador=${VLR_INVALIDO}
-
-    Set Test Variable    ${BODY}
-    Requisitar API POST /usuarios
-
-Quando requisitar a API de cadastro de usuário informando os campos corretamente
-    [Documentation]    Requisição com os campos corretos
     [Arguments]    ${ADM_S_N}
     Set Test Variable    ${ADM_S_N}
-    Criar body e requisitar API de criação de usuário
+    Iniciar sessão API ServeRest
+    ${BODY}    Load Json From File     ${CURDIR}/../payload/${TEST_TAGS[0]}.json
+    ${BODY}    Update Value To Json    ${BODY}    $..nome            ${DATA_USER.name}
+    ${BODY}    Update Value To Json    ${BODY}    $..email           ${DATA_USER.email}
+    ${BODY}    Update Value To Json    ${BODY}    $..password        ${DATA_USER.password}
+    ${BODY}    Update Value To Json    ${BODY}    $..administrador   ${ADM_S_N}
 
-Quando requisitar a API de cadastro de usuário informando os mesmos dados
-    [Documentation]    Chama a API de cadastro de usuário
-    Criar body e requisitar API de criação de usuário
+    Set Test Variable    ${BODY}
+    Requisitar API POST /usuarios
 
 # --- ENTAO
 # Uma opção é criar um IF caso receba o compo nome X ter a mensagem Y, ao invés de fazer um então para cada cenário
@@ -115,14 +68,3 @@ E possuo um usuário cadastrado
 Valida schema de usuário criado com sucesso
     [Documentation]    Validação conforme arquivo json schema para resposta de usuario criado com sucesso
     Validate Jsonschema From File    ${RESPONSE.json()}    ${CURDIR}/../schemas/usuario_criado.json
-
-Criar body e requisitar API de criação de usuário
-    [Documentation]    Cria o body para requisição usando os dados da variável de suíte
-    ${BODY}    Create Dictionary
-    ...    nome=${DATA_USER.name}
-    ...    email=${DATA_USER.email}
-    ...    password=${DATA_USER.password}
-    ...    administrador=${ADM_S_N}
-
-    Set Test Variable    ${BODY}
-    Requisitar API POST /usuarios
