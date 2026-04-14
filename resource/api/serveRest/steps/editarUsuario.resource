@@ -168,9 +168,8 @@ Criar massa de usuário para edição
     [Documentation]    Cria massa de usuário para a edição
     [Arguments]    ${ADM_S_N}
     Create Session    alias=${ALIAS_API_SERVEREST}    url=${BASE_URL_SERVEREST}
-    Criar dados para usuário
     Set Test Variable    ${ADM_S_N}
-    Criar body e requisitar API de criação de usuário
+    Criar usuário para testes  ${ADM_S_N}
     Validar response usuário e id criado    ${CAMPO_MSG}    ${MSG_USER_CREATED}
 
 Preparar body para edição
