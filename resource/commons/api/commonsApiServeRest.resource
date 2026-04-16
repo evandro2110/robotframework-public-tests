@@ -106,6 +106,19 @@ Requisitar API POST /usuarios
 
     RETURN    ${RESPONSE.json()}
 
+Requisitar API PUT /usuarios
+    [Documentation]    Requisição da API de edição de usuários
+    ${RESPONSE}    PUT On Session
+    ...    alias=${ALIAS_API_SERVEREST}
+    ...    url=${URL_USUARIOS}/${ID_USUARIO}
+    ...    json=${BODY}
+    ...    expected_status=any
+
+    Set Test Variable    ${RESPONSE}
+    Set Test Variable    ${STATUS_RETORNADO}    ${RESPONSE.status_code}
+
+    RETURN    ${RESPONSE.json()}
+
 Armazenar token
     [Documentation]   Armazena o token de autenticação retornado pela API
     ${BODY}      Create Dictionary   email=${DATA_USER.email}   password=${DATA_USER.password}
