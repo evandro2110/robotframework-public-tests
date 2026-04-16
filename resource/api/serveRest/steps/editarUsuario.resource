@@ -10,6 +10,7 @@ ${MSG_SUCESSO_EDICAO}  Registro alterado com sucesso
 ${MSG_ADM_EDIT_INV}    administrador deve ser 'true' ou 'false'
 ${EMAIL_INVALIDO}      TST
 
+
 *** Keywords ***
 # --- DADO
 # --- QUANDO
