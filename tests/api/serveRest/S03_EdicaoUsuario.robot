@@ -59,7 +59,7 @@ CT06: Atualiza um usuário sem o parâmetro de administrador
     Então o status code será    400
     E a API deverá apresentar a mensagem    ${CAMPO_ADM}    ${MSG_ADM_OBRIGATORIO}
 
-CT07: Atualiza todos os dados de um usuário cadastrado
+CT07: Atualiza todos os dados de um usuário cadastrado com parâmetro ADM vazio
     [Documentation]    Validação do requisição API de edição de usuário com parâmetro ADM vazio
     [Tags]   API_S03CT07    negative
     Dado que possuo uma sessão na API ServeRest

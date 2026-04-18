@@ -22,7 +22,7 @@ Quando Requisitar API PUT /usuarios
     Criar dados para usuário
     ${BODY}    Load Json From File    ${CURDIR}/../payload/${TEST_TAGS[0]}.json
     Set Test Variable    ${BODY}
-    Preparo o body para o payload
+    Preparar o body para o payload
 
     Requisitar API PUT /usuarios
 
@@ -33,7 +33,7 @@ Quando Requisitar API PUT /usuarios e-mail inválido
     Set Test Variable    ${DATA_USER.EMAIL}
     ${BODY}    Load Json From File    ${CURDIR}/../payload/${TEST_TAGS[0]}.json
     Set Test Variable    ${BODY}
-    Preparo o body para o payload
+    Preparar o body para o payload
 
     Requisitar API PUT /usuarios
 
@@ -48,7 +48,7 @@ E os dados da edição serão gravados com sucesso
 
 # --- STEPS
 
-Preparo o body para o payload
+Preparar o body para o payload
     [Documentation]    Preparar o body para os payloads.json
     ${BODY}    Update Value To Json   ${BODY}     $..nome            ${DATA_USER.name}
     ${BODY}    Update Value To Json   ${BODY}     $..email           ${DATA_USER.email}
