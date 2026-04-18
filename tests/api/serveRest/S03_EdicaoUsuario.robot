@@ -10,51 +10,59 @@ Test Teardown    Delete All Sessions
 
 
 *** Test Cases ***
-CT01: Atualiza o nome de um usuário cadastrado
-    [Documentation]    Validação do comportamento ao requisitar API de edição de usuário para atualizar o nome
-    [Tags]    positive
+CT01: Atualiza todos os dados de um usuário cadastrado
+    [Documentation]    Validação do comportamento ao requisitar API de edição de usuário para atualizar todos os dados
+    [Tags]   API_S03CT01    positive
     Dado que possuo uma sessão na API ServeRest
-    Quando requisitar a API de edição de usuários
+    Quando Requisitar API PUT /usuarios    true
     Então o status code será    200
-    E deverá ser retornado a mensagem de sucesso da edição
+    E a API deverá apresentar a mensagem    ${CAMPO_MSG}    ${MSG_SUCESSO_EDICAO}
     E os dados da edição serão gravados com sucesso
 
 CT02: Atualiza um usuário e-mail inválido
     [Documentation]    Validação do comportamento ao requisitar API de edição de usuário para atualizar o nome
-    [Tags]    negative
+    [Tags]    API_S03CT02    negative
     Dado que possuo uma sessão na API ServeRest
-    Quando requisitar a API de edição para um usuário com e-mail inválido
+    Quando Requisitar API PUT /usuarios e-mail inválido    true    ${EMAIL_INVALIDO}
     Então o status code será    400
-    E deverá ser retornado a mensagem de e-mail inválido
+    E a API deverá apresentar a mensagem    ${CAMPO_EMAIL}    ${MSG_EMAIL_INVALIDO}
 
 CT03: Atualiza um usuário sem o parâmetro de nome
     [Documentation]    Validação do comportamento ao requisitar API de edição de usuário sem parâmetro de nome
-    [Tags]    negative
+    [Tags]    API_S03CT03    negative
     Dado que possuo uma sessão na API ServeRest
-    Quando requisitar a API de edição para um usuário sem parâmetro de nome
+    Quando Requisitar API PUT /usuarios    false
     Então o status code será    400
-    E deverá ser retornado a mensagem de nome obrigatório
+    E a API deverá apresentar a mensagem     ${CAMPO_NOME}    ${MSG_NOME_OBRIGATORIO}
 
 CT04: Atualiza um usuário sem o parâmetro de e-mail
     [Documentation]    Validação do comportamento ao requisitar API de edição de usuário sem parâmetro de e-mail
-    [Tags]    negative
+    [Tags]    API_S03CT04    negative
     Dado que possuo uma sessão na API ServeRest
-    Quando requisitar a API de edição para um usuário sem parâmetro de e-mail
+    Quando Requisitar API PUT /usuarios    true
     Então o status code será    400
-    E deverá ser retornado a mensagem de e-mail obrigatório
+    E a API deverá apresentar a mensagem    ${CAMPO_EMAIL}    ${MSG_EMAIL_OBRIGATORIO}
 
 CT05: Atualiza um usuário sem o parâmetro de password
     [Documentation]    Validação do comportamento ao requisitar API de edição de usuário sem parâmetro de password
-    [Tags]    negative
+    [Tags]    API_S03CT05    negative
     Dado que possuo uma sessão na API ServeRest
-    Quando requisitar a API de edição para um usuário sem parâmetro de password
+    Quando Requisitar API PUT /usuarios    false
     Então o status code será    400
-    E deverá ser retornado a mensagem de password obrigatório
+    E a API deverá apresentar a mensagem    ${CAMPO_PWD}    ${MSG_SENHA_OBRIGATORIO}
 
 CT06: Atualiza um usuário sem o parâmetro de administrador
     [Documentation]    Validação do comportamento ao requisitar API de edição de usuário sem parâmetro de adm
-    [Tags]    negative
+    [Tags]    API_S03CT06    negative
     Dado que possuo uma sessão na API ServeRest
-    Quando requisitar a API de edição para um usuário sem parâmetro de administrador
+    Quando Requisitar API PUT /usuarios    false
     Então o status code será    400
-    E deverá ser retornado a mensagem de administrador obrigatório
+    E a API deverá apresentar a mensagem    ${CAMPO_ADM}    ${MSG_ADM_OBRIGATORIO}
+
+CT07: Atualiza todos os dados de um usuário cadastrado com parâmetro ADM vazio
+    [Documentation]    Validação do requisição API de edição de usuário com parâmetro ADM vazio
+    [Tags]   API_S03CT07    negative
+    Dado que possuo uma sessão na API ServeRest
+    Quando Requisitar API PUT /usuarios    ${EMPTY}
+    Então o status code será    400
+    E a API deverá apresentar a mensagem    ${CAMPO_ADM}    ${MSG_ADM_EDIT_INV}

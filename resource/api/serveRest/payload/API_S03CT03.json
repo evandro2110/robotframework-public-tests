@@ -1,0 +1,5 @@
+{
+  "email": "${DATA_USER.email}",
+  "password": "${DATA_USER.password}",
+  "administrador": "${ADM_S_N}"
+}
